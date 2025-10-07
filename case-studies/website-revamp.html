@@ -3,8 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Designing with Data - Esteban Martínez</title>
+  <title>Website Revamp - Esteban Martínez</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;700&family=DM+Mono:wght@400;500&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="../assets/css/global.css" rel="stylesheet">
+  <link href="../assets/css/case-study.css" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
@@ -108,7 +110,7 @@
     /* Hero Card */
     .hero-wrapper {
       width: 100%;
-      padding: 40px 56px;
+      padding: 56px;
       background: #E8FF5D;
       border-radius: 64px;
       border: 1px solid black;
@@ -117,7 +119,7 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 120px;
-      min-height: 580px;
+      min-height: 753px;
     }
 
     .hero-content {
@@ -239,12 +241,10 @@
       transition: opacity 0.5s ease;
     }
 
-    /* Show blobs when outcomes section is active */
     .outcomes-section.active .outcomes-blobs {
       opacity: 1;
     }
 
-    /* Noise effect overlay */
     .outcomes-blobs::after {
       content: '';
       position: absolute;
@@ -482,6 +482,8 @@
       height: auto !important;
       min-height: 100vh;
       padding: 100px 0;
+      position: relative;
+      z-index: 1;
     }
 
     .solution-section .sticky-content {
@@ -500,89 +502,71 @@
       gap: 80px;
       padding: 0;
       position: relative;
+      isolation: isolate;
+      min-height: 100vh;
     }
 
     .solution-text {
-      flex: 0 0 541px;
-      max-width: 541px;
+      flex: 1;
+      max-width: 540px;
       padding: 0 24px;
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
 
-    .solution-title-sticky {
-      position: sticky;
-      top: 80px;
-      z-index: 10;
-      background: white;
-      padding-top: 60px;
-      padding-bottom: 30px;
-      margin-top: -60px;
-      margin-bottom: 16px;
-    }
-    
-    .solution-title-sticky::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-      left: -24px;
-      right: -24px;
-      height: 100px;
-      background: white;
-      z-index: -1;
-    }
-    
-    .solution-title-sticky::after {
-      content: '';
-      position: absolute;
-      bottom: -30px;
-      left: -24px;
-      right: -24px;
-      height: 40px;
-      background: linear-gradient(to bottom, 
-        rgba(255, 255, 255, 1) 0%, 
-        rgba(255, 255, 255, 0.7) 40%,
-        rgba(255, 255, 255, 0) 100%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
     .solution-description {
-      color: #1F1F1F;
+      color: #514E4E;
       font-size: 24px;
       font-family: "Lora", serif;
-      line-height: 36px;
+      line-height: 1.5;
       position: relative;
+      margin-bottom: 40px;
+      margin-top: 56px;
     }
 
-    .solution-description .semibold {
+    .solution-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .solution-item {
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(31, 31, 31, 0.1);
+    }
+
+    .solution-item:last-child {
+      border-bottom: none;
+    }
+
+    .solution-item-title {
+      color: #1F1F1F;
+      font-size: 24px;
       font-weight: 600;
+      margin-bottom: 12px;
     }
 
-    .solution-description strong {
-      font-weight: 700;
+    .solution-item-content {
+      color: #1F1F1F;
+      font-size: 16px;
+      font-family: "Lora", serif;
+      line-height: 1.6;
     }
 
-    .solution-image-wrapper {
-      flex: 0 0 722px;
-      max-width: 722px;
+    /* IMPORTANTE: Sticky para las imágenes */
+    .solution-images-wrapper {
+      width: 852px;
+      height: 794px;
       position: sticky;
       top: 120px;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
       align-self: flex-start;
-      margin-right: 0;
-    }
-
-    .solution-image {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .solution-image img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
     }
 
     /* Outputs Section */
@@ -597,139 +581,62 @@
       margin-bottom: 40px;
     }
 
-    .outputs-container {
-      display: flex;
+    .outputs-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
       gap: 20px;
       width: 100%;
-    }
-
-    .outputs-column {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
     }
 
     .output-card {
       padding: 40px;
       background: #EDEDED;
       border-radius: 32px;
-      border: 1px solid #C2C2C2;
-      box-shadow: 0px 3px 3px 2.25px rgba(68, 68, 68, 0.16);
+      border: 1px solid #1F1F1F;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: #666;
+      font-size: 16px;
       overflow: hidden;
     }
 
     .output-card img {
       width: 100%;
-      height: auto;
-      object-fit: contain;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
     }
 
-    .output-row {
-      display: flex;
-      gap: 20px;
+    /* Bento Grid Layout */
+    .output-card:nth-child(1) {
+      grid-column: span 5;
+      grid-row: span 2;
+      min-height: 400px;
     }
 
-    .output-row .output-card {
-      flex: 1;
-      min-height: 149px;
+    .output-card:nth-child(2) {
+      grid-column: span 7;
+      grid-row: span 2;
+      min-height: 400px;
     }
 
-    .output-vs {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      color: #1F1F1F;
-      font-size: 24px;
-      font-weight: 500;
-      line-height: 36px;
+    .output-card:nth-child(3) {
+      grid-column: span 4;
+      grid-row: span 1;
+      min-height: 280px;
     }
 
-    .output-phones {
-      background: linear-gradient(270deg, #EDEDED 0%, #FBFBFB 50%, #BABABA 50%, #BABABA 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 60px;
-      min-height: 559px;
+    .output-card:nth-child(4) {
+      grid-column: span 8;
+      grid-row: span 1;
+      min-height: 280px;
     }
 
-    .phone-mockup {
-      position: relative;
-      width: 205px;
-      height: 419px;
-    }
-
-    .phone-frame {
-      width: 193.61px;
-      height: 419px;
-      background: #DFE3F0;
-      border-radius: 32px;
-      border: 4px solid black;
-      position: absolute;
-      left: 5.7px;
-      top: 0;
-    }
-
-    .phone-button {
-      position: absolute;
-      background: black;
-      border-top-left-radius: 1.4px;
-      border-bottom-left-radius: 1.4px;
-    }
-
-    .phone-button.btn1 {
-      width: 5.69px;
-      height: 14.24px;
-      left: 0;
-      top: 48.88px;
-    }
-
-    .phone-button.btn2 {
-      width: 5.69px;
-      height: 26.57px;
-      left: 0;
-      top: 73.55px;
-    }
-
-    .phone-button.btn3 {
-      width: 5.69px;
-      height: 26.57px;
-      left: 0;
-      top: 108.66px;
-    }
-
-    .phone-button.btn-right {
-      width: 5.69px;
-      height: 43.66px;
-      right: 0;
-      top: 127.17px;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-      border-top-right-radius: 1.4px;
-      border-bottom-right-radius: 1.4px;
-    }
-
-    .phone-screen {
-      width: 193.66px;
-      height: 419px;
-      border-radius: 32px;
-      position: absolute;
-      left: 6.17px;
-      top: -0.52px;
-    }
-
-    .phone-notch {
-      width: 61.22px;
-      height: 18.51px;
-      background: black;
-      border-radius: 70px;
-      position: absolute;
-      left: 72.13px;
-      top: 5.7px;
+    .output-card:nth-child(5) {
+      grid-column: span 12;
+      grid-row: span 1;
+      min-height: 320px;
     }
 
     /* Footer */
@@ -868,6 +775,40 @@
     }
 
     /* Responsive */
+    @media (max-width: 1400px) {
+      .solution-images-wrapper {
+        width: auto;
+        height: auto;
+        min-height: 500px;
+      }
+
+      .solution-text {
+        max-width: 500px;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .context-text,
+      .solution-text {
+        width: 45%;
+      }
+
+      .context-image {
+        width: 45%;
+        height: 280px;
+      }
+
+      .solution-images-wrapper {
+        width: auto;
+        height: auto;
+        min-height: 450px;
+      }
+
+      .challenge-text {
+        font-size: 28px;
+      }
+    }
+
     @media (max-width: 1024px) {
       .outcomes-blob {
         width: 600px;
@@ -894,6 +835,7 @@
 
       .hero-wrapper {
         padding: 32px;
+        min-height: auto;
       }
 
       .hero-title {
@@ -901,48 +843,8 @@
         line-height: 1.2;
       }
 
-      .context-wrapper,
-      .solution-wrapper,
-      .challenge-wrapper {
-        flex-direction: column;
-        gap: 40px;
-      }
-
-      .context-text,
-      .solution-text,
-      .challenge-content {
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .context-image,
-      .solution-image-wrapper {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-      }
-
-      .challenge-image {
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .outputs-container {
-        flex-direction: column;
-      }
-
-      .output-row {
-        flex-direction: column;
-      }
-
-      .outcomes-grid {
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .outcome-divider {
-        width: 80px;
-        height: 1px;
+      .hero-content {
+        padding: 32px;
       }
 
       footer {
@@ -953,12 +855,76 @@
       .footer-card {
         flex-direction: column;
         align-items: flex-start;
+        gap: 24px;
       }
 
       .footer-right {
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
+      }
+
+      .context-wrapper,
+      .solution-wrapper {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .context-text,
+      .solution-text {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .context-image,
+      .solution-images-wrapper {
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+        top: auto;
+      }
+
+      .solution-section {
+        padding: 80px 0;
+      }
+
+      .solution-section .sticky-content {
+        padding: 0 32px;
+      }
+
+      .challenge-wrapper {
+        flex-direction: column;
+      }
+
+      .challenge-image {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .challenge-text {
+        max-width: 100%;
+      }
+
+      .outputs-section {
+        flex-direction: column;
+      }
+
+      .outputs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .output-card:nth-child(1),
+      .output-card:nth-child(2),
+      .output-card:nth-child(3),
+      .output-card:nth-child(4),
+      .output-card:nth-child(5) {
+        grid-column: span 1;
+        grid-row: span 1;
+        min-height: 250px;
+      }
+
+      .content-wrapper {
+        gap: 100px;
       }
 
       .scroll-section {
@@ -987,10 +953,101 @@
         height: 550px;
       }
 
-      .section-title,
-      .outcomes-title,
-      .outputs-title {
+      .outcomes-card {
+        padding: 32px 24px;
+      }
+
+      nav {
+        padding: 16px 24px;
+      }
+
+      .nav-links {
+        gap: 20px;
+      }
+
+      main {
+        padding: 0 24px 60px;
+        margin-top: 80px;
+      }
+
+      .back-button {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+      }
+
+      .hero-wrapper {
+        padding: 24px;
+        min-height: auto;
+        border-radius: 48px;
+      }
+
+      .hero-title {
+        font-size: 40px;
+        line-height: 1.2;
+      }
+
+      .hero-content {
+        padding: 24px;
+        border-radius: 24px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      footer {
+        padding: 32px 24px;
+        margin: 60px 24px 40px;
+      }
+
+      .footer-text {
+        font-size: 28px;
+      }
+
+      .footer-cta {
+        font-size: 18px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .footer-left {
+        flex-wrap: wrap;
+      }
+
+      .content-wrapper {
+        gap: 80px;
+      }
+
+      .section-title {
         font-size: 56px;
+      }
+
+      .outcomes-title {
+        font-size: 56px;
+        line-height: 48px;
+      }
+
+      .outcomes-title .italic {
+        font-size: 48px;
+      }
+
+      .outcomes-grid {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .outcome-divider {
+        width: 80px;
+        height: 1px;
+      }
+
+      .challenge-text {
+        font-size: 24px;
+      }
+
+      .challenge-divider {
+        min-height: 120px;
       }
 
       .section-description,
@@ -999,13 +1056,12 @@
         line-height: 32px;
       }
 
-      .challenge-text {
-        font-size: 24px;
+      .context-image {
+        height: 250px;
       }
 
-      .output-phones {
-        flex-direction: column;
-        gap: 40px;
+      .challenge-image {
+        height: 240px;
       }
     }
 
@@ -1022,35 +1078,152 @@
         height: 450px;
       }
 
-      .hero-title {
-        font-size: 40px;
+      .outcomes-card {
+        padding: 24px 16px;
+        border-radius: 32px;
       }
 
-      .section-title,
-      .outcomes-title,
-      .outputs-title {
+      .outcomes-title {
         font-size: 40px;
+        line-height: 36px;
       }
 
-      .venn-circle {
-        width: 200px;
-        height: 200px;
+      .outcomes-title .italic {
+        font-size: 36px;
+      }
+
+      .outcome-item .large {
+        font-size: 24px;
+      }
+
+      .outcome-item .small {
         font-size: 18px;
       }
 
-      .venn-circle.blue {
-        left: 20px;
-        top: 200px;
+      nav {
+        padding: 12px 16px;
       }
 
-      .venn-circle.purple {
-        left: 90px;
-        top: 40px;
+      .nav-logo {
+        height: 32px;
       }
 
-      .venn-circle.red {
-        left: 160px;
-        top: 200px;
+      .nav-cta {
+        padding: 6px 12px;
+        font-size: 14px;
+      }
+
+      main {
+        padding: 0 16px 40px;
+      }
+
+      .back-button {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+        margin-bottom: 16px;
+      }
+
+      .hero-wrapper {
+        padding: 16px;
+        min-height: auto;
+        border-radius: 32px;
+        margin-bottom: 80px;
+      }
+
+      .hero-title {
+        font-size: 32px;
+        line-height: 1.1;
+      }
+
+      .hero-content {
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      .hero-meta {
+        font-size: 14px;
+        margin-bottom: 32px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+        margin-bottom: 32px;
+      }
+
+      .subprojects-title {
+        font-size: 14px;
+      }
+
+      footer {
+        padding: 24px 16px;
+        margin: 40px 16px 20px;
+      }
+
+      .footer-card {
+        padding: 24px 16px;
+      }
+
+      .footer-text {
+        font-size: 24px;
+      }
+
+      .footer-cta {
+        font-size: 16px;
+      }
+
+      .subprojects-grid {
+        flex-direction: column;
+      }
+
+      .subproject-button {
+        width: 100%;
+      }
+
+      .content-wrapper {
+        gap: 60px;
+      }
+
+      .section-title {
+        font-size: 40px;
+        line-height: 1.1;
+      }
+
+      .section-description,
+      .solution-description {
+        font-size: 18px;
+        line-height: 28px;
+      }
+
+      .challenge-text {
+        font-size: 20px;
+        line-height: 30px;
+      }
+
+      .challenge-divider {
+        min-height: 100px;
+      }
+
+      .context-image {
+        height: 200px;
+      }
+
+      .challenge-image {
+        height: 180px;
+      }
+
+      .challenge-wrapper {
+        padding: 32px 16px;
+      }
+
+      .outputs-title {
+        font-size: 48px;
+        margin-bottom: 32px;
+      }
+
+      .output-card {
+        padding: 32px 20px;
+        border-radius: 24px;
       }
     }
   </style>
@@ -1058,7 +1231,7 @@
 <body>
   <!-- Navbar -->
   <nav>
-    <a href="index.html#hero" class="nav-logo-link" aria-label="Go to home">
+    <a href="#" class="nav-logo-link" aria-label="Go to home">
       <img 
         src="https://estebanmartinez.site/assets/img/esteban_logo.svg" 
         alt="Esteban Martínez logo" 
@@ -1068,16 +1241,16 @@
     </a>
 
     <div class="nav-links">
-      <a href="index.html#about-card">About</a>
-      <a href="index.html#work-section">Work</a>
-      <a href="index.html#footer">Contact</a>
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#footer">Contact</a>
       <a href="https://calendly.com/estebanmtzsevilla/30min" target="_blank" class="nav-cta">Book a meeting</a>
     </div>
   </nav>
 
   <!-- Main Content -->
   <main>
-    <a href="scaling-design.html" class="back-button">&lt;</a>
+    <a href="../index.html#work-section" class="back-button"><</a>
 
     <!-- Hero Section -->
     <div class="hero-wrapper">
@@ -1092,7 +1265,11 @@
         <div class="hero-description">
           <p style="margin-bottom: 1.5em;">
             For over five years, I've helped transform our team into a <strong>strategic driver of the company's digital evolution.</strong><br>
-            The design team evolved <strong>from being a service provider</strong> of isolated outputs <span class="semibold">into a strategic driver</span> of experience enhancement. Design became involved earlier in the process, influencing product direction, improving operations, and enabling better business decisions through evidence, insight and systems thinking.
+            The design team evolved <strong>from being a service provider</strong> of isolated outputs <span class="semibold">into a strategic driver</span> of experience enhancement.
+          </p>
+          
+          <p style="margin-bottom: 1.5em;">
+            Design became involved earlier in the process, influencing product direction, improving operations, and enabling better business decisions through evidence, insight and systems thinking.
           </p>
           
           <p style="margin-bottom: 1.5em;">
@@ -1109,9 +1286,9 @@
         <div>
           <div class="subprojects-title">Here's a few of the initiatives we tackled</div>
           <div class="subprojects-grid">
-            <a href="designing-with-data.html" class="subproject-button active">Designing with data</a>
-            <a href="website-revamp.html" class="subproject-button">Website Revamp</a>
-            <a href="mobile-app.html" class="subproject-button">Mobile App</a>
+            <a href="#" class="subproject-button">Designing with data</a>
+            <a href="#" class="subproject-button active">Website Revamp</a>
+            <a href="#" class="subproject-button">Mobile App</a>
           </div>
         </div>
       </div>
@@ -1127,66 +1304,63 @@
         </div>
         <div class="sticky-content">
           <div class="outcomes-card">
-            <h2 class="outcomes-title">Outcomes</h2>
+            <h2 class="outcomes-title">
+              Outcomes <span class="italic">(projected)</span>
+            </h2>
             <div class="outcomes-grid">
               <div class="outcome-item">
-                <span class="large">40%</span><br>
-                <span class="small">Reduced rework cycles</span>
+                <span class="large">+15% certified leads</span>
+                <span class="small"> when live</span>
               </div>
               <div class="outcome-divider"></div>
               <div class="outcome-item">
-                <span class="small">UX issues detected</span><br>
-                <span class="large">2x earlier</span>
+                <span class="small">SME's onboarding time </span>
+                <span class="large">reduced 55%</span>
               </div>
               <div class="outcome-divider"></div>
               <div class="outcome-item">
-                <span class="large">100% of product squads</span>
-                <span class="small"> adopted analytics tools</span>
+                <span class="large">70% reduction</span>
+                <span class="small"> of assistance related calls</span>
               </div>
               <div class="outcome-divider"></div>
               <div class="outcome-item">
-                <span class="small">Centralized repository </span>
-                <span class="large">enabled decision making</span>
-                <span class="small"> for the whole company</span>
+                <span class="small">Successful integration of virtual agents dedicated to serving 3 key customer segments</span>
               </div>
-            </div>
-            <div class="outcomes-footer">
-              More importantly, the mindset shifted: <span class="emphasis">Data became a shared language between design, product, and business.</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Context Section -->
+      <!-- Context Section with Scroll Effect -->
       <section class="scroll-section context-section" id="context">
         <div class="sticky-content">
           <div class="context-wrapper">
             <div class="context-text">
               <h2 class="section-title">Context</h2>
               <p class="section-description">
-                In our organization, product and design decisions were often driven by personal opinions, hierarchy, and internal assumptions, resulting in solutions misaligned with real user needs.
+                The company's website lacked a clear structure and narrative tailored to specific segments. This resulted in a high volume of disoriented users turning to Marketing or Sales teams for operational issues—causing friction, operational overload, and low-quality leads.
               </p>
             </div>
             <div class="context-image">
-              <img src="https://via.placeholder.com/527x303/667eea/FFFFFF?text=Context+Image" alt="Context illustration">
+              Context Image
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Challenge Section -->
+      <!-- Challenge Section with Scroll Effect -->
       <section class="scroll-section challenge-section" id="challenge">
         <div class="sticky-content">
           <div class="challenge-wrapper">
             <div class="challenge-image">
-              <img src="https://via.placeholder.com/375x284/f093fb/FFFFFF?text=Challenge" alt="Challenge illustration">
+              Challenge Image
             </div>
             <div class="challenge-content">
               <h2 class="section-title">Challenge</h2>
               <div class="challenge-question">
                 <div class="challenge-divider"></div>
                 <p class="challenge-text">
-                  How might we foster a culture where design decisions are grounded in evidence and user insights, minimizing bias and delivering more relevant, high-impact experiences?
+                  How might we transform the website into an effective sales tool for new businesses, while also providing meaningful support to existing clients and users?
                 </p>
               </div>
             </div>
@@ -1199,21 +1373,54 @@
         <div class="sticky-content">
           <div class="solution-wrapper">
             <div class="solution-text">
-              <div class="solution-title-sticky">
-                <h2 class="section-title">Solution</h2>
-              </div>
+              <h2 class="section-title">Solution</h2>
+              
               <div class="solution-description">
-                We launched Designing with Data, an initiative to embed a data-driven mindset into our design practice, tackling it from three fronts:<br><br>
-                
-                <strong>Analytics Infrastructure</strong> Integrated analytics tools into our digital products (starting with the app) to track key interactions, establish baselines, and measure the impact of improvements.<br>
-                <strong>Early Evaluation Protocols</strong> Formalized pre-release testing stages, including proofs of concept, prototypes, and usability tests with real users ensuring decisions are guided by validated insights, not isolated perceptions.<br>
-                <strong>Strategic User Research</strong><br>
-                Conducted a generative study of the SME segment to redefine our value proposition across the website and digital ecosystem.<br>
-                Planned a deep-dive study on cardholders to identify specific use cases, paving the way for hyper-personalized experiences.
+                As part of the <em>Designing with Data</em> initiative, we led a strategic redesign to reposition the website as a functional and focused channel aligned with business objectives.
               </div>
+
+              <ul class="solution-list">
+                <li class="solution-item">
+                  <div class="solution-item-title">Segmented by Archetypes</div>
+                  <div class="solution-item-content">We defined clear user archetypes to personalize the value proposition according to different contexts, needs, and use cases.</div>
+                </li>
+
+                <li class="solution-item">
+                  <div class="solution-item-title">Dual Focus: Sales and Support</div>
+                  <div class="solution-item-content">Primary objective: Generate new sales with a focus on small businesses. Secondary objective: Provide self-service support for clients, users, and affiliates.</div>
+                </li>
+
+                <li class="solution-item">
+                  <div class="solution-item-title">Goal-Oriented Information Architecture</div>
+                  <div class="solution-item-content">We redesigned the structure to improve conversion flows, create specialized sections by user type, and offer more intuitive navigation.</div>
+                </li>
+
+                <li class="solution-item">
+                  <div class="solution-item-title">New Funnel Navigation Feature</div>
+                  <div class="solution-item-content">We added a guided experience to help users move through the funnel more effectively, with clearer steps and contextual cues to reduce friction and drop-offs.</div>
+                </li>
+
+                <li class="solution-item">
+                  <div class="solution-item-title">Specialized Help Center</div>
+                  <div class="solution-item-content">We integrated a dedicated Help Center to channel operational questions, reduce junk leads, and improve lead quality.</div>
+                </li>
+
+                <li class="solution-item">
+                  <div class="solution-item-title">First Product with the New Design System</div>
+                  <div class="solution-item-content">The site became the first channel to apply our design system, creating a consistent visual language and component library.</div>
+                </li>
+
+                <li class="solution-item">
+                  <div class="solution-item-title">Cross-Functional Collaboration</div>
+                  <div class="solution-item-content">We co-created a content and work plan with Marketing and partnered with Development to ensure alignment between business, design, and technology.</div>
+                </li>
+              </ul>
             </div>
-            <div class="solution-image-wrapper">
-              <img class="solution-image" src="https://via.placeholder.com/770x790/F5F5F5/1F1F1F?text=Venn+Diagram" alt="Venn diagram showing Analytics, Testing, and Research">
+
+            <div class="solution-images-wrapper">
+              <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; font-weight: 500;">
+                Solution Image
+              </div>
             </div>
           </div>
         </div>
@@ -1222,53 +1429,12 @@
       <!-- Outputs Section -->
       <section class="outputs-section">
         <h2 class="outputs-title">Outputs</h2>
-        <div class="outputs-container">
-          <div class="outputs-column">
-            <div class="output-row">
-              <div class="output-card">
-                <div class="output-vs">
-                  <img src="https://via.placeholder.com/107x97/FFD361/1F1F1F?text=Old" alt="Before">
-                  <span>vs</span>
-                  <img src="https://via.placeholder.com/106x96/95FFA0/1F1F1F?text=New" alt="After">
-                </div>
-              </div>
-              <div class="output-card">
-                <img src="https://via.placeholder.com/276x123/F5F5F5/1F1F1F?text=Analytics" alt="Analytics dashboard">
-              </div>
-            </div>
-            <div class="output-card">
-              <img src="https://via.placeholder.com/564x317/F5F5F5/1F1F1F?text=Research+Insights" alt="Research insights">
-            </div>
-            <div class="output-card">
-              <img src="https://via.placeholder.com/564x317/F5F5F5/1F1F1F?text=Testing+Results" alt="Testing results">
-            </div>
-          </div>
-          <div class="outputs-column">
-            <div class="output-card">
-              <img src="https://via.placeholder.com/430x438/F5F5F5/1F1F1F?text=Design+System" alt="Design system">
-            </div>
-            <div class="output-card output-phones">
-              <div class="phone-mockup">
-                <div class="phone-frame"></div>
-                <div class="phone-button btn1"></div>
-                <div class="phone-button btn2"></div>
-                <div class="phone-button btn3"></div>
-                <div class="phone-button btn-right"></div>
-                <img class="phone-screen" src="https://via.placeholder.com/194x419/FFFFFF/1F1F1F?text=Before" alt="Before mobile">
-                <div class="phone-notch"></div>
-              </div>
-              <div style="text-align: center; color: #1F1F1F; font-size: 24px; font-weight: 500;">vs</div>
-              <div class="phone-mockup">
-                <div class="phone-frame"></div>
-                <div class="phone-button btn1"></div>
-                <div class="phone-button btn2"></div>
-                <div class="phone-button btn3"></div>
-                <div class="phone-button btn-right"></div>
-                <img class="phone-screen" src="https://via.placeholder.com/194x420/FFFFFF/1F1F1F?text=After" alt="After mobile">
-                <div class="phone-notch"></div>
-              </div>
-            </div>
-          </div>
+        <div class="outputs-grid">
+          <div class="output-card">Output 1</div>
+          <div class="output-card">Output 2</div>
+          <div class="output-card">Output 3</div>
+          <div class="output-card">Output 4</div>
+          <div class="output-card">Output 5</div>
         </div>
       </section>
     </div>
