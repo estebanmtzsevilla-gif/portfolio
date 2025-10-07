@@ -3,8 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crypto Wallet - Esteban Martínez</title>
+  <title>Mobile App - Esteban Martínez</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;700&family=DM+Mono:wght@400;500&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="../assets/css/global.css" rel="stylesheet">
+  <link href="../assets/css/case-study.css" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
@@ -112,7 +114,6 @@
       background: #E8FF5D;
       border-radius: 64px;
       border: 1px solid black;
-      box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.16);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -121,25 +122,28 @@
       min-height: 580px;
     }
 
-    .hero-header {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
+    .hero-content {
       width: 100%;
-      max-width: 1280px;
+      max-width: 1154px;
+      background: white;
+      border-radius: 32px;
+      border: 1px solid #1F1F1F;
+      padding: 40px;
     }
 
     .hero-title {
       color: #1F1F1F;
-      font-size: 120px;
+      font-size: 80px;
       font-weight: 500;
-      line-height: 96px;
+      line-height: 64px;
+      margin-bottom: 24px;
     }
 
     .hero-meta {
       color: #1F1F1F;
-      font-size: 40px;
-      line-height: 32px;
+      font-size: 16px;
+      line-height: 19.2px;
+      margin-bottom: 56px;
     }
 
     .hero-meta .year {
@@ -153,11 +157,59 @@
 
     .hero-description {
       color: #1F1F1F;
-      font-size: 24px;
+      font-size: 16px;
       font-family: "Lora", serif;
+      line-height: 1.6;
+      margin-bottom: 56px;
+    }
+
+    .hero-description strong {
+      font-weight: 700;
+    }
+
+    .hero-description .semibold {
+      font-weight: 600;
+    }
+
+    /* Sub-projects Section */
+    .subprojects-title {
+      color: #1F1F1F;
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .subprojects-grid {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .subproject-button {
+      padding: 16px;
+      background: white;
+      border-radius: 20px;
+      border: 1px solid #1F1F1F;
+      color: #1F1F1F;
+      font-size: 16px;
+      font-family: "DM Sans", sans-serif;
       font-weight: 400;
-      line-height: 1.5;
-      max-width: 100%;
+      line-height: 28px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .subproject-button:hover {
+      background: #F5F5F5;
+      transform: translateY(-2px);
+    }
+
+    .subproject-button.active {
+      background: #1F1F1F;
+      color: white;
+      font-weight: 600;
     }
 
     /* Content Container */
@@ -175,6 +227,7 @@
       position: relative;
     }
 
+    /* Blobs Background for Outcomes */
     .outcomes-blobs {
       position: fixed;
       top: 0;
@@ -252,10 +305,12 @@
       justify-content: center;
       align-items: center;
       gap: 32px;
+      flex-wrap: wrap;
     }
 
     .outcome-item {
       flex: 1;
+      min-width: 200px;
       color: white;
       font-family: "Lora", serif;
     }
@@ -263,19 +318,32 @@
     .outcome-item .large {
       font-size: 32px;
       font-weight: 400;
-      line-height: 1.3;
     }
 
     .outcome-item .small {
       font-size: 24px;
       font-weight: 400;
-      line-height: 1.3;
     }
 
     .outcome-divider {
       width: 1px;
       height: 80px;
       background: white;
+    }
+
+    .outcomes-footer {
+      color: white;
+      font-size: 20px;
+      font-family: "Lora", serif;
+      line-height: 1.6;
+      margin-top: 20px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .outcomes-footer .emphasis {
+      font-weight: 600;
+      font-style: italic;
     }
 
     /* Scroll Sections with Sticky Effect */
@@ -312,8 +380,8 @@
     }
 
     .context-text {
-      flex: 1;
-      max-width: 540px;
+      flex: 0 0 541px;
+      max-width: 541px;
       padding: 0 24px;
       display: flex;
       flex-direction: column;
@@ -335,46 +403,22 @@
     }
 
     .context-image {
-      width: 852px;
-      height: 790px;
-      position: relative;
-      flex-shrink: 0;
+      flex: 0 0 327px;
+      max-width: 327px;
+      height: 623px;
+      background: #F5F5F5;
+      border-radius: 40px;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .tauros-card {
-      width: 455px;
-      height: 290px;
-      background: radial-gradient(ellipse 132.33% 132.33% at 94.95% 4.33%, #41E29F 0%, #FD4DCC 100%);
-      box-shadow: 20px 22px 64px rgba(11.95, 13.60, 30.90, 0.35);
-      border-radius: 35px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
+    .context-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-
-    .tauros-graph {
-      position: absolute;
-      bottom: 20px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      height: 60px;
-    }
-
-    .graph-bar {
-      width: 12px;
-      background: white;
-      border-radius: 2px 2px 0 0;
-    }
-
-    .graph-bar:nth-child(1) { height: 27px; }
-    .graph-bar:nth-child(2) { height: 40px; }
-    .graph-bar:nth-child(3) { height: 53px; }
 
     /* Challenge Section */
     .challenge-wrapper {
@@ -391,16 +435,19 @@
       gap: 80px;
     }
 
-    .challenge-image {
-      width: 293px;
-      height: 293px;
-      flex-shrink: 0;
-      background: #f5f5f5;
-      border-radius: 12px;
+    .challenge-illustration {
+      flex: 0 0 250px;
+      max-width: 250px;
+      height: 250px;
+      background: #F5F5F5;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
     }
 
-    .challenge-image img {
+    .challenge-illustration img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -422,7 +469,7 @@
 
     .challenge-divider {
       width: 2px;
-      min-height: 164px;
+      min-height: 120px;
       background: #1F1F1F;
       flex-shrink: 0;
     }
@@ -433,10 +480,10 @@
       font-size: 32px;
       font-family: "Lora", serif;
       font-weight: 400;
-      line-height: 1.3;
+      font-style: italic;
     }
 
-    /* Solution Section */
+    /* Solution Section - UPDATED WITH SNIPPET */
     .solution-section {
       height: auto !important;
       min-height: 100vh;
@@ -462,6 +509,7 @@
       padding: 0;
       position: relative;
       isolation: isolate;
+      min-height: 100vh;
     }
 
     .solution-text {
@@ -479,81 +527,83 @@
       font-family: "Lora", serif;
       line-height: 1.5;
       position: relative;
+      margin-bottom: 40px;
+      margin-top: 56px;
     }
 
-    .solution-description ul {
-      list-style: disc;
-      margin-left: 20px;
-      margin-top: 16px;
+    .solution-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
-    .solution-description li {
+    .solution-item {
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(31, 31, 31, 0.1);
+    }
+
+    .solution-item:last-child {
+      border-bottom: none;
+    }
+
+    .solution-item-title {
+      color: #1F1F1F;
+      font-size: 24px;
+      font-weight: 600;
       margin-bottom: 12px;
     }
 
-    .solution-images-wrapper {
-      width: 852px;
-      height: 794px;
-      position: relative;
+    .solution-item-content {
+      color: #1F1F1F;
+      font-size: 16px;
+      font-family: "Lora", serif;
+      line-height: 1.6;
+    }
+
+    .solution-item-content ul {
+      margin-top: 12px;
+      padding-left: 20px;
+    }
+
+    .solution-item-content li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    /* IMPORTANT: Sticky for images */
+    .solution-image-wrapper {
+      width: 327px;
+      height: 623px;
+      position: sticky;
+      top: 120px;
       flex-shrink: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 40px;
-    }
-
-    .before-after-container {
-      display: flex;
-      gap: 187px;
-      align-items: center;
-    }
-
-    .phone-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .phone-frame {
-      border-radius: 24px;
+      align-self: flex-start;
+      border-radius: 40px;
       overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      background: #F5F5F5;
     }
 
-    .phone-frame.before {
-      border: 6px solid #1F1F1F;
+    .solution-phone {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .phone-frame.after {
-      border: 8px solid black;
-      border-radius: 32px;
-    }
-
-    .phone-frame img {
-      display: block;
-      width: 256px;
-      height: 537px;
-    }
-
-    .phone-frame.after img {
-      width: 248px;
-      height: 538px;
-    }
-
-    .phone-label {
-      color: black;
-      font-size: 24px;
-      font-family: "DM Sans", sans-serif;
-      font-weight: 300;
+    .solution-phone img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     /* Outputs Section */
     .outputs-section {
       padding: 80px 0;
-      position: relative;
-      background: white;
-      margin-top: 120px;
     }
 
     .outputs-title {
@@ -563,29 +613,30 @@
       margin-bottom: 40px;
     }
 
-    .outputs-container {
-      display: flex;
-      justify-content: center;
+    .outputs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
       width: 100%;
     }
 
-    .outputs-card {
-      padding: 40px;
+    .output-phone {
       background: #EDEDED;
       border-radius: 32px;
-      border: 1px solid #1F1F1F;
+      border: 1px solid #C2C2C2;
       box-shadow: 0px 3px 3px 2.25px rgba(68, 68, 68, 0.16);
+      padding: 40px 20px;
       display: flex;
-      justify-content: center;
       align-items: center;
-      max-width: 1200px;
-      width: 100%;
+      justify-content: center;
+      min-height: 500px;
+      overflow: hidden;
     }
 
-    .outputs-card img {
+    .output-phone img {
       width: 100%;
       height: auto;
-      display: block;
+      object-fit: contain;
     }
 
     /* Footer */
@@ -749,43 +800,70 @@
       }
 
       .hero-wrapper {
-        padding: 40px 32px;
+        padding: 32px;
       }
 
       .hero-title {
-        font-size: 80px;
-        line-height: 1.1;
-      }
-
-      .hero-meta {
-        font-size: 32px;
-      }
-
-      .hero-description {
-        font-size: 20px;
+        font-size: 56px;
+        line-height: 1.2;
       }
 
       .context-wrapper,
-      .solution-wrapper {
+      .solution-wrapper,
+      .challenge-wrapper {
         flex-direction: column;
         gap: 40px;
       }
 
       .context-text,
-      .solution-text {
+      .solution-text,
+      .challenge-content {
         width: 100%;
         max-width: 100%;
       }
 
       .context-image,
-      .solution-images-wrapper {
+      .solution-image-wrapper {
         width: 100%;
         max-width: 100%;
         height: auto;
+        position: relative;
+        top: auto;
       }
 
-      .before-after-container {
-        gap: 40px;
+      .challenge-illustration {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .outputs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .outcomes-grid {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .outcome-divider {
+        width: 80px;
+        height: 1px;
+      }
+
+      footer {
+        padding: 40px 32px;
+        margin: 80px 32px 40px;
+      }
+
+      .footer-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-right {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
       }
 
       .scroll-section {
@@ -799,23 +877,6 @@
         top: auto;
         transform: none;
         opacity: 1 !important;
-      }
-
-      footer {
-        padding: 40px 32px;
-        margin: 80px 32px 40px;
-      }
-
-      .footer-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 24px;
-      }
-
-      .footer-right {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
       }
     }
 
@@ -831,37 +892,20 @@
         height: 550px;
       }
 
-      .outcomes-card {
-        padding: 32px 24px;
-      }
-
-      .outcomes-grid {
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .outcome-divider {
-        width: 80px;
-        height: 1px;
-      }
-
-      .section-title {
+      .section-title,
+      .outcomes-title,
+      .outputs-title {
         font-size: 56px;
       }
 
       .section-description,
       .solution-description {
         font-size: 20px;
+        line-height: 32px;
       }
 
       .challenge-text {
         font-size: 24px;
-      }
-
-      .phone-frame img,
-      .phone-frame.after img {
-        width: 200px;
-        height: auto;
       }
     }
 
@@ -879,16 +923,17 @@
       }
 
       .hero-title {
-        font-size: 48px;
-      }
-
-      .section-title {
         font-size: 40px;
       }
 
-      .before-after-container {
-        flex-direction: column;
-        gap: 40px;
+      .section-title,
+      .outcomes-title,
+      .outputs-title {
+        font-size: 40px;
+      }
+
+      .outputs-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -896,7 +941,7 @@
 <body>
   <!-- Navbar -->
   <nav>
-    <a href="index.html#hero" class="nav-logo-link" aria-label="Go to home">
+    <a href="../index.html#hero" class="nav-logo-link" aria-label="Go to home">
       <img 
         src="https://estebanmartinez.site/assets/img/esteban_logo.svg" 
         alt="Esteban Martínez logo" 
@@ -906,30 +951,52 @@
     </a>
 
     <div class="nav-links">
-      <a href="index.html#about-card">About</a>
-      <a href="index.html#work-section">Work</a>
-      <a href="index.html#footer">Contact</a>
+      <a href="../index.html#about-card">About</a>
+      <a href="../index.html#work-section">Work</a>
+      <a href="../index.html#footer">Contact</a>
       <a href="https://calendly.com/estebanmtzsevilla/30min" target="_blank" class="nav-cta">Book a meeting</a>
     </div>
   </nav>
 
   <!-- Main Content -->
   <main>
-    <a href="index.html#work-section" class="back-button"><</a>
+    <a href="../index.html#work-section" class="back-button">&lt;</a>
 
     <!-- Hero Section -->
     <div class="hero-wrapper">
-      <div class="hero-header">
-        <h1 class="hero-title">Crypto wallet</h1>
+      <div class="hero-content">
+        <h1 class="hero-title">Scaling design</h1>
         
         <p class="hero-meta">
-          <span class="year">2019.</span>
-          <span class="info"> Fintech, Product design</span>
+          <span class="year">2020-2025.</span>
+          <span class="info"> Financial services/Fintech, UX leadership, Product design</span>
         </p>
-      </div>
 
-      <div class="hero-description">
-        Redesigned core currency screens and wallet interactions to improve usability and consistency across the platform. Focused on simplifying flows, updating UI components, and ensuring a trustworthy, cohesive experience for crypto users.
+        <div class="hero-description">
+          <p style="margin-bottom: 1.5em;">
+            For over five years, I've helped transform our team into a <strong>strategic driver of the company's digital evolution.</strong><br>
+            The design team evolved <strong>from being a service provider</strong> of isolated outputs <span class="semibold">into a strategic driver</span> of experience enhancement. Design became involved earlier in the process, influencing product direction, improving operations, and enabling better business decisions through evidence, insight and systems thinking.
+          </p>
+          
+          <p style="margin-bottom: 1.5em;">
+            Our mission was to establish a data-driven, customer-centered practice that created alignment across stakeholders and delivered measurable business outcomes across the entire ecosystem (web, app, physical touchpoints and fintech products).
+          </p>
+          
+          <p>
+            My leadership focused on building capabilities instead of dependencies.<br>
+            We scaled research literacy. We matured design ops. We bridged silos between tech, marketing and product. And most importantly: we made design matter.
+          </p>
+        </div>
+
+        <!-- Sub-projects -->
+        <div>
+          <div class="subprojects-title">Here's a few of the initiatives we tackled</div>
+          <div class="subprojects-grid">
+            <a href="designing-with-data.html" class="subproject-button">Designing with data</a>
+            <a href="website-revamp.html" class="subproject-button">Website Revamp</a>
+            <a href="mobile-app.html" class="subproject-button active">Mobile App</a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -946,60 +1013,63 @@
             <h2 class="outcomes-title">Outcomes</h2>
             <div class="outcomes-grid">
               <div class="outcome-item">
-                <span class="large">Consistency</span>
-                <span class="small"> across currencies strengthened brand presence and user trust.</span>
+                <span class="small">App store rating increase</span><br>
+                <span class="large">2.9→4.7</span>
               </div>
               <div class="outcome-divider"></div>
               <div class="outcome-item">
-                <span class="small">Improved </span>
-                <span class="large">clarity of key interactions</span>
-                <span class="small"> and data visualization.</span>
+                <span class="large">25%</span><br>
+                <span class="small">App enrollment increase</span>
               </div>
               <div class="outcome-divider"></div>
               <div class="outcome-item">
-                <span class="small">Enhanced usability for both novice and experienced users.</span>
+                <span class="large">-45%</span><br>
+                <span class="small">Contact center calls</span>
               </div>
+              <div class="outcome-divider"></div>
+              <div class="outcome-item">
+                <span class="small">Reduced user exits to external browsers</span>
+              </div>
+            </div>
+            <div class="outcomes-footer">
+              Mobile team is the most mature across the whole org. We've established a solid foundation for continuous iteration based on analytics, usability testing, generative research and an agile mindset.
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Context Section with Scroll Effect -->
+      <!-- Context Section -->
       <section class="scroll-section context-section" id="context">
         <div class="sticky-content">
           <div class="context-wrapper">
             <div class="context-text">
               <h2 class="section-title">Context</h2>
               <p class="section-description">
-                Tauros' currency screens had limited usability, with outdated UI patterns and no clear hierarchy of information. Users struggled to interpret key data, reducing the effectiveness of the trading experience.
+                The mobile app was a critical touchpoint for our users yet it suffered from inconsistent UX, fragmented information, and confusing flows.<br><br>
+                We had an opportunity to redesign not just the interface, but the entire user experience with a focus on clarity, functionality, and measurable outcomes.<br><br>
+                This effort built upon the foundations of our <em>Designing with Data</em> initiative, and marked a key moment in positioning design as a strategic partner in product development.
               </p>
             </div>
             <div class="context-image">
-              <div class="tauros-card">
-                <div class="tauros-graph">
-                  <div class="graph-bar"></div>
-                  <div class="graph-bar"></div>
-                  <div class="graph-bar"></div>
-                </div>
-              </div>
+              <img src="https://via.placeholder.com/327x623/F5F5F5/1F1F1F?text=Context+Screen" alt="App splash screen">
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Challenge Section with Scroll Effect -->
+      <!-- Challenge Section -->
       <section class="scroll-section challenge-section" id="challenge">
         <div class="sticky-content">
           <div class="challenge-wrapper">
-            <div class="challenge-image">
-              <img src="https://via.placeholder.com/293x293/F5F5F5/1F1F1F?text=Challenge" alt="Challenge illustration">
+            <div class="challenge-illustration">
+              <img src="https://via.placeholder.com/250x250/F5F5F5/1F1F1F?text=Challenge" alt="Challenge illustration">
             </div>
             <div class="challenge-content">
               <h2 class="section-title">Challenge</h2>
               <div class="challenge-question">
                 <div class="challenge-divider"></div>
                 <p class="challenge-text">
-                  How might we improve the currency screens to provide clearer information, better usability, and consistency across different digital assets?
+                  How could we optimize and scale the app experience to make it more useful, consistent, and centered on <em>real user behavior</em>?
                 </p>
               </div>
             </div>
@@ -1007,35 +1077,67 @@
         </div>
       </section>
 
-      <!-- Solution Section -->
+      <!-- Solution Section - UPDATED -->
       <section class="scroll-section solution-section" id="solution">
         <div class="sticky-content">
           <div class="solution-wrapper">
             <div class="solution-text">
               <h2 class="section-title">Solution</h2>
               <div class="solution-description">
-                <ul>
-                  <li>Conducted a usability analysis to identify friction points in current flows.</li>
-                  <li>Proposed a redesign introducing new components such as clear price display, transaction buttons, and contextual actions.</li>
-                  <li>Applied consistent color coding and visual hierarchy across multiple currencies (BTC, BCH, Dash, Stellar, Litecoin).</li>
-                  <li>Designed flexible states (including empty states) to handle different usage scenarios.</li>
-                </ul>
+                Working closely with product and engineering, we identified and addressed key pain points across the experience.
               </div>
+              
+              <ul class="solution-list">
+                <li class="solution-item">
+                  <div class="solution-item-title">1. Fuel Map</div>
+                  <div class="solution-item-content">
+                    Redesigned the experience to make it more intuitive, visually clear, and functional on the go, helping users quickly find nearby stations and compare prices.
+                  </div>
+                </li>
+
+                <li class="solution-item">
+                  <div class="solution-item-title">2. New Benefits Section</div>
+                  <div class="solution-item-content">
+                    Unified Promotions and Benefits into a single, clearer, and categorized experience.
+                    <ul>
+                      <li>Migrated all flows to the native app, eliminating the need to open a browser</li>
+                      <li>Defined rules to display different types of ads depending on strategic partnerships</li>
+                    </ul>
+                  </div>
+                </li>
+
+                <li class="solution-item">
+                  <div class="solution-item-title">3. User Profile Optimization</div>
+                  <div class="solution-item-content">
+                    Simplified navigation, reorganized key information, and streamlined frequent actions like editing and updating data.
+                  </div>
+                </li>
+
+                <li class="solution-item">
+                  <div class="solution-item-title">4. Enrollment Flow</div>
+                  <div class="solution-item-content">
+                    Updated the cardholder onboarding to make it more straightforward, understandable, and visually consistent with the rest of the app.
+                  </div>
+                </li>
+
+                <li class="solution-item">
+                  <div class="solution-item-title">5. Merchant Map MVP</div>
+                  <div class="solution-item-content">
+                    Co-designed with Product an MVP for exploring affiliated merchants, with filters by location, category, and relevance.
+                  </div>
+                </li>
+
+                <li class="solution-item">
+                  <div class="solution-item-title">6. Notification Center</div>
+                  <div class="solution-item-content">
+                    Completely redesigned the notifications experience to improve hierarchy, reduce friction, and increase visibility of relevant messages.
+                  </div>
+                </li>
+              </ul>
             </div>
-            <div class="solution-images-wrapper">
-              <div class="before-after-container">
-                <div class="phone-wrapper">
-                  <div class="phone-frame before">
-                    <img src="https://via.placeholder.com/256x537/FFC804/FFFFFF?text=Before" alt="Before redesign">
-                  </div>
-                  <div class="phone-label">Before</div>
-                </div>
-                <div class="phone-wrapper">
-                  <div class="phone-frame after">
-                    <img src="https://via.placeholder.com/248x538/FFFFFF/1F1F1F?text=After" alt="After redesign">
-                  </div>
-                  <div class="phone-label">After</div>
-                </div>
+            <div class="solution-image-wrapper">
+              <div class="solution-phone">
+                <img src="https://via.placeholder.com/327x623/F5F5F5/1F1F1F?text=Solution+Screen" alt="App solution screen">
               </div>
             </div>
           </div>
@@ -1045,57 +1147,21 @@
       <!-- Outputs Section -->
       <section class="outputs-section">
         <h2 class="outputs-title">Outputs</h2>
-        <div class="outputs-container">
-          <div class="outputs-column">
-            <!-- Bitcoin -->
-            <div class="crypto-item">
-              <div class="crypto-icon bitcoin">
-                <svg class="crypto-logo" viewBox="0 0 20 26" fill="white">
-                  <text x="10" y="20" text-anchor="middle" font-size="20" font-weight="bold">₿</text>
-                </svg>
-              </div>
-              <img class="crypto-screen" src="https://via.placeholder.com/134x290/FFC804/FFFFFF?text=Bitcoin" alt="Bitcoin screen">
-            </div>
+        <div class="outputs-grid">
+          <div class="output-phone">
+            <img src="https://via.placeholder.com/300x500/EDEDED/1F1F1F?text=Fuel+Map" alt="Fuel Map screen">
+          </div>
 
-            <!-- Dash -->
-            <div class="crypto-item">
-              <div class="crypto-icon dash">
-                <svg class="crypto-logo" viewBox="0 0 22 14" fill="#F8F8F8">
-                  <rect width="22" height="14" fill="#F8F8F8"/>
-                </svg>
-              </div>
-              <img class="crypto-screen" src="https://via.placeholder.com/134x290/0075E0/FFFFFF?text=Dash" alt="Dash screen">
-            </div>
+          <div class="output-phone">
+            <img src="https://via.placeholder.com/300x500/EDEDED/1F1F1F?text=Benefits" alt="Benefits screen">
+          </div>
 
-            <!-- Bitcoin Cash -->
-            <div class="crypto-item">
-              <div class="crypto-icon bitcoin-cash">
-                <svg class="crypto-logo" viewBox="0 0 20 26" fill="white">
-                  <text x="10" y="20" text-anchor="middle" font-size="20" font-weight="bold">₿</text>
-                </svg>
-              </div>
-              <img class="crypto-screen" src="https://via.placeholder.com/134x290/E06C00/FFFFFF?text=BCH" alt="Bitcoin Cash screen">
-            </div>
+          <div class="output-phone">
+            <img src="https://via.placeholder.com/300x500/EDEDED/1F1F1F?text=Merchant+Map" alt="Merchant Map screen">
+          </div>
 
-            <!-- Stellar -->
-            <div class="crypto-item">
-              <div class="crypto-icon stellar">
-                <svg class="crypto-logo" viewBox="0 0 21 22" fill="white">
-                  <circle cx="10.5" cy="11" r="8" fill="white"/>
-                </svg>
-              </div>
-              <img class="crypto-screen" src="https://via.placeholder.com/134x290/6C6C6C/FFFFFF?text=Stellar" alt="Stellar screen">
-            </div>
-
-            <!-- Litecoin -->
-            <div class="crypto-item">
-              <div class="crypto-icon litecoin">
-                <svg class="crypto-logo" viewBox="0 0 23 14" fill="white">
-                  <rect width="23" height="14" fill="white"/>
-                </svg>
-              </div>
-              <img class="crypto-screen" src="https://via.placeholder.com/134x290/6F1BDB/FFFFFF?text=Litecoin" alt="Litecoin screen">
-            </div>
+          <div class="output-phone">
+            <img src="https://via.placeholder.com/300x500/EDEDED/1F1F1F?text=Notifications" alt="Notifications screen">
           </div>
         </div>
       </section>

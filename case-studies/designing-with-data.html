@@ -3,8 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mobile App - Esteban Martínez</title>
+  <title>Designing with Data - Esteban Martínez</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;700&family=DM+Mono:wght@400;500&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="../assets/css/global.css" rel="stylesheet">
+  <link href="../assets/css/case-study.css" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
@@ -239,10 +241,12 @@
       transition: opacity 0.5s ease;
     }
 
+    /* Show blobs when outcomes section is active */
     .outcomes-section.active .outcomes-blobs {
       opacity: 1;
     }
 
+    /* Noise effect overlay */
     .outcomes-blobs::after {
       content: '';
       position: absolute;
@@ -298,17 +302,21 @@
       line-height: 56px;
     }
 
+    .outcomes-title .italic {
+      font-size: 64px;
+      font-style: italic;
+      font-weight: 100;
+    }
+
     .outcomes-grid {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 32px;
-      flex-wrap: wrap;
     }
 
     .outcome-item {
       flex: 1;
-      min-width: 200px;
       color: white;
       font-family: "Lora", serif;
     }
@@ -327,21 +335,6 @@
       width: 1px;
       height: 80px;
       background: white;
-    }
-
-    .outcomes-footer {
-      color: white;
-      font-size: 20px;
-      font-family: "Lora", serif;
-      line-height: 1.6;
-      margin-top: 20px;
-      padding-top: 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .outcomes-footer .emphasis {
-      font-weight: 600;
-      font-style: italic;
     }
 
     /* Scroll Sections with Sticky Effect */
@@ -393,7 +386,7 @@
     }
 
     .section-description {
-      color: #514E4E;
+      color: #1F1F1F;
       font-size: 24px;
       font-family: "Lora", serif;
       font-weight: 400;
@@ -401,15 +394,19 @@
     }
 
     .context-image {
-      flex: 0 0 327px;
-      max-width: 327px;
-      height: 623px;
-      background: #F5F5F5;
-      border-radius: 40px;
+      flex: 0 0 527px;
+      max-width: 527px;
+      height: 303px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 20px;
       overflow: hidden;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
     }
 
     .context-image img {
@@ -433,19 +430,21 @@
       gap: 80px;
     }
 
-    .challenge-illustration {
-      flex: 0 0 250px;
-      max-width: 250px;
-      height: 250px;
-      background: #F5F5F5;
-      border-radius: 20px;
+    .challenge-image {
+      flex: 0 0 375px;
+      max-width: 375px;
+      height: 284px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
     }
 
-    .challenge-illustration img {
+    .challenge-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -467,7 +466,7 @@
 
     .challenge-divider {
       width: 2px;
-      min-height: 120px;
+      min-height: 164px;
       background: #1F1F1F;
       flex-shrink: 0;
     }
@@ -478,16 +477,13 @@
       font-size: 32px;
       font-family: "Lora", serif;
       font-weight: 400;
-      font-style: italic;
     }
 
-    /* Solution Section - UPDATED WITH SNIPPET */
+    /* Solution Section */
     .solution-section {
       height: auto !important;
       min-height: 100vh;
       padding: 100px 0;
-      position: relative;
-      z-index: 1;
     }
 
     .solution-section .sticky-content {
@@ -506,97 +502,89 @@
       gap: 80px;
       padding: 0;
       position: relative;
-      isolation: isolate;
-      min-height: 100vh;
     }
 
     .solution-text {
-      flex: 1;
-      max-width: 540px;
+      flex: 0 0 541px;
+      max-width: 541px;
       padding: 0 24px;
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
 
+    .solution-title-sticky {
+      position: sticky;
+      top: 80px;
+      z-index: 10;
+      background: white;
+      padding-top: 60px;
+      padding-bottom: 30px;
+      margin-top: -60px;
+      margin-bottom: 16px;
+    }
+    
+    .solution-title-sticky::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -24px;
+      right: -24px;
+      height: 100px;
+      background: white;
+      z-index: -1;
+    }
+    
+    .solution-title-sticky::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: -24px;
+      right: -24px;
+      height: 40px;
+      background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 1) 0%, 
+        rgba(255, 255, 255, 0.7) 40%,
+        rgba(255, 255, 255, 0) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
     .solution-description {
-      color: #514E4E;
+      color: #1F1F1F;
       font-size: 24px;
       font-family: "Lora", serif;
-      line-height: 1.5;
+      line-height: 36px;
       position: relative;
-      margin-bottom: 40px;
-      margin-top: 56px;
     }
 
-    .solution-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .solution-item {
-      margin-bottom: 40px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid rgba(31, 31, 31, 0.1);
-    }
-
-    .solution-item:last-child {
-      border-bottom: none;
-    }
-
-    .solution-item-title {
-      color: #1F1F1F;
-      font-size: 24px;
+    .solution-description .semibold {
       font-weight: 600;
-      margin-bottom: 12px;
     }
 
-    .solution-item-content {
-      color: #1F1F1F;
-      font-size: 16px;
-      font-family: "Lora", serif;
-      line-height: 1.6;
+    .solution-description strong {
+      font-weight: 700;
     }
 
-    .solution-item-content ul {
-      margin-top: 12px;
-      padding-left: 20px;
-    }
-
-    .solution-item-content li {
-      margin-bottom: 8px;
-      line-height: 1.5;
-    }
-
-    /* IMPORTANT: Sticky for images */
     .solution-image-wrapper {
-      width: 327px;
-      height: 623px;
+      flex: 0 0 722px;
+      max-width: 722px;
       position: sticky;
       top: 120px;
-      flex-shrink: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       align-self: flex-start;
-      border-radius: 40px;
-      overflow: hidden;
-      background: #F5F5F5;
+      margin-right: 0;
     }
 
-    .solution-phone {
+    .solution-image {
       width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      height: auto;
+      display: block;
     }
 
-    .solution-phone img {
+    .solution-image img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
     }
 
     /* Outputs Section */
@@ -611,30 +599,139 @@
       margin-bottom: 40px;
     }
 
-    .outputs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    .outputs-container {
+      display: flex;
       gap: 20px;
       width: 100%;
     }
 
-    .output-phone {
+    .outputs-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .output-card {
+      padding: 40px;
       background: #EDEDED;
       border-radius: 32px;
       border: 1px solid #C2C2C2;
       box-shadow: 0px 3px 3px 2.25px rgba(68, 68, 68, 0.16);
-      padding: 40px 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 500px;
       overflow: hidden;
     }
 
-    .output-phone img {
+    .output-card img {
       width: 100%;
       height: auto;
       object-fit: contain;
+    }
+
+    .output-row {
+      display: flex;
+      gap: 20px;
+    }
+
+    .output-row .output-card {
+      flex: 1;
+      min-height: 149px;
+    }
+
+    .output-vs {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: #1F1F1F;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 36px;
+    }
+
+    .output-phones {
+      background: linear-gradient(270deg, #EDEDED 0%, #FBFBFB 50%, #BABABA 50%, #BABABA 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      min-height: 559px;
+    }
+
+    .phone-mockup {
+      position: relative;
+      width: 205px;
+      height: 419px;
+    }
+
+    .phone-frame {
+      width: 193.61px;
+      height: 419px;
+      background: #DFE3F0;
+      border-radius: 32px;
+      border: 4px solid black;
+      position: absolute;
+      left: 5.7px;
+      top: 0;
+    }
+
+    .phone-button {
+      position: absolute;
+      background: black;
+      border-top-left-radius: 1.4px;
+      border-bottom-left-radius: 1.4px;
+    }
+
+    .phone-button.btn1 {
+      width: 5.69px;
+      height: 14.24px;
+      left: 0;
+      top: 48.88px;
+    }
+
+    .phone-button.btn2 {
+      width: 5.69px;
+      height: 26.57px;
+      left: 0;
+      top: 73.55px;
+    }
+
+    .phone-button.btn3 {
+      width: 5.69px;
+      height: 26.57px;
+      left: 0;
+      top: 108.66px;
+    }
+
+    .phone-button.btn-right {
+      width: 5.69px;
+      height: 43.66px;
+      right: 0;
+      top: 127.17px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-right-radius: 1.4px;
+      border-bottom-right-radius: 1.4px;
+    }
+
+    .phone-screen {
+      width: 193.66px;
+      height: 419px;
+      border-radius: 32px;
+      position: absolute;
+      left: 6.17px;
+      top: -0.52px;
+    }
+
+    .phone-notch {
+      width: 61.22px;
+      height: 18.51px;
+      background: black;
+      border-radius: 70px;
+      position: absolute;
+      left: 72.13px;
+      top: 5.7px;
     }
 
     /* Footer */
@@ -825,17 +922,19 @@
         width: 100%;
         max-width: 100%;
         height: auto;
-        position: relative;
-        top: auto;
       }
 
-      .challenge-illustration {
+      .challenge-image {
         width: 100%;
         max-width: 100%;
       }
 
-      .outputs-grid {
-        grid-template-columns: 1fr;
+      .outputs-container {
+        flex-direction: column;
+      }
+
+      .output-row {
+        flex-direction: column;
       }
 
       .outcomes-grid {
@@ -905,6 +1004,11 @@
       .challenge-text {
         font-size: 24px;
       }
+
+      .output-phones {
+        flex-direction: column;
+        gap: 40px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -930,8 +1034,25 @@
         font-size: 40px;
       }
 
-      .outputs-grid {
-        grid-template-columns: 1fr;
+      .venn-circle {
+        width: 200px;
+        height: 200px;
+        font-size: 18px;
+      }
+
+      .venn-circle.blue {
+        left: 20px;
+        top: 200px;
+      }
+
+      .venn-circle.purple {
+        left: 90px;
+        top: 40px;
+      }
+
+      .venn-circle.red {
+        left: 160px;
+        top: 200px;
       }
     }
   </style>
@@ -939,7 +1060,7 @@
 <body>
   <!-- Navbar -->
   <nav>
-    <a href="index.html#hero" class="nav-logo-link" aria-label="Go to home">
+    <a href="../index.html#hero" class="nav-logo-link" aria-label="Go to home">
       <img 
         src="https://estebanmartinez.site/assets/img/esteban_logo.svg" 
         alt="Esteban Martínez logo" 
@@ -949,16 +1070,16 @@
     </a>
 
     <div class="nav-links">
-      <a href="index.html#about-card">About</a>
-      <a href="index.html#work-section">Work</a>
-      <a href="index.html#footer">Contact</a>
+      <a href="../index.html#about-card">About</a>
+      <a href="../index.html#work-section">Work</a>
+      <a href="../index.html#footer">Contact</a>
       <a href="https://calendly.com/estebanmtzsevilla/30min" target="_blank" class="nav-cta">Book a meeting</a>
     </div>
   </nav>
 
   <!-- Main Content -->
   <main>
-    <a href="scaling-design.html" class="back-button">&lt;</a>
+    <a href="../index.html#work-section" class="back-button">&lt;</a>
 
     <!-- Hero Section -->
     <div class="hero-wrapper">
@@ -990,9 +1111,9 @@
         <div>
           <div class="subprojects-title">Here's a few of the initiatives we tackled</div>
           <div class="subprojects-grid">
-            <a href="designing-with-data.html" class="subproject-button">Designing with data</a>
+            <a href="designing-with-data.html" class="subproject-button active">Designing with data</a>
             <a href="website-revamp.html" class="subproject-button">Website Revamp</a>
-            <a href="mobile-app.html" class="subproject-button active">Mobile App</a>
+            <a href="mobile-app.html" class="subproject-button">Mobile App</a>
           </div>
         </div>
       </div>
@@ -1011,26 +1132,28 @@
             <h2 class="outcomes-title">Outcomes</h2>
             <div class="outcomes-grid">
               <div class="outcome-item">
-                <span class="small">App store rating increase</span><br>
-                <span class="large">2.9→4.7</span>
+                <span class="large">40%</span><br>
+                <span class="small">Reduced rework cycles</span>
               </div>
               <div class="outcome-divider"></div>
               <div class="outcome-item">
-                <span class="large">25%</span><br>
-                <span class="small">App enrollment increase</span>
+                <span class="small">UX issues detected</span><br>
+                <span class="large">2x earlier</span>
               </div>
               <div class="outcome-divider"></div>
               <div class="outcome-item">
-                <span class="large">-45%</span><br>
-                <span class="small">Contact center calls</span>
+                <span class="large">100% of product squads</span>
+                <span class="small"> adopted analytics tools</span>
               </div>
               <div class="outcome-divider"></div>
               <div class="outcome-item">
-                <span class="small">Reduced user exits to external browsers</span>
+                <span class="small">Centralized repository </span>
+                <span class="large">enabled decision making</span>
+                <span class="small"> for the whole company</span>
               </div>
             </div>
             <div class="outcomes-footer">
-              Mobile team is the most mature across the whole org. We've established a solid foundation for continuous iteration based on analytics, usability testing, generative research and an agile mindset.
+              More importantly, the mindset shifted: <span class="emphasis">Data became a shared language between design, product, and business.</span>
             </div>
           </div>
         </div>
@@ -1043,13 +1166,11 @@
             <div class="context-text">
               <h2 class="section-title">Context</h2>
               <p class="section-description">
-                The mobile app was a critical touchpoint for our users yet it suffered from inconsistent UX, fragmented information, and confusing flows.<br><br>
-                We had an opportunity to redesign not just the interface, but the entire user experience with a focus on clarity, functionality, and measurable outcomes.<br><br>
-                This effort built upon the foundations of our <em>Designing with Data</em> initiative, and marked a key moment in positioning design as a strategic partner in product development.
+                In our organization, product and design decisions were often driven by personal opinions, hierarchy, and internal assumptions, resulting in solutions misaligned with real user needs.
               </p>
             </div>
             <div class="context-image">
-              <img src="https://via.placeholder.com/327x623/F5F5F5/1F1F1F?text=Context+Screen" alt="App splash screen">
+              <img src="https://via.placeholder.com/527x303/667eea/FFFFFF?text=Context+Image" alt="Context illustration">
             </div>
           </div>
         </div>
@@ -1059,15 +1180,15 @@
       <section class="scroll-section challenge-section" id="challenge">
         <div class="sticky-content">
           <div class="challenge-wrapper">
-            <div class="challenge-illustration">
-              <img src="https://via.placeholder.com/250x250/F5F5F5/1F1F1F?text=Challenge" alt="Challenge illustration">
+            <div class="challenge-image">
+              <img src="https://via.placeholder.com/375x284/f093fb/FFFFFF?text=Challenge" alt="Challenge illustration">
             </div>
             <div class="challenge-content">
               <h2 class="section-title">Challenge</h2>
               <div class="challenge-question">
                 <div class="challenge-divider"></div>
                 <p class="challenge-text">
-                  How could we optimize and scale the app experience to make it more useful, consistent, and centered on <em>real user behavior</em>?
+                  How might we foster a culture where design decisions are grounded in evidence and user insights, minimizing bias and delivering more relevant, high-impact experiences?
                 </p>
               </div>
             </div>
@@ -1075,68 +1196,26 @@
         </div>
       </section>
 
-      <!-- Solution Section - UPDATED -->
+      <!-- Solution Section -->
       <section class="scroll-section solution-section" id="solution">
         <div class="sticky-content">
           <div class="solution-wrapper">
             <div class="solution-text">
-              <h2 class="section-title">Solution</h2>
-              <div class="solution-description">
-                Working closely with product and engineering, we identified and addressed key pain points across the experience.
+              <div class="solution-title-sticky">
+                <h2 class="section-title">Solution</h2>
               </div>
-              
-              <ul class="solution-list">
-                <li class="solution-item">
-                  <div class="solution-item-title">1. Fuel Map</div>
-                  <div class="solution-item-content">
-                    Redesigned the experience to make it more intuitive, visually clear, and functional on the go, helping users quickly find nearby stations and compare prices.
-                  </div>
-                </li>
-
-                <li class="solution-item">
-                  <div class="solution-item-title">2. New Benefits Section</div>
-                  <div class="solution-item-content">
-                    Unified Promotions and Benefits into a single, clearer, and categorized experience.
-                    <ul>
-                      <li>Migrated all flows to the native app, eliminating the need to open a browser</li>
-                      <li>Defined rules to display different types of ads depending on strategic partnerships</li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li class="solution-item">
-                  <div class="solution-item-title">3. User Profile Optimization</div>
-                  <div class="solution-item-content">
-                    Simplified navigation, reorganized key information, and streamlined frequent actions like editing and updating data.
-                  </div>
-                </li>
-
-                <li class="solution-item">
-                  <div class="solution-item-title">4. Enrollment Flow</div>
-                  <div class="solution-item-content">
-                    Updated the cardholder onboarding to make it more straightforward, understandable, and visually consistent with the rest of the app.
-                  </div>
-                </li>
-
-                <li class="solution-item">
-                  <div class="solution-item-title">5. Merchant Map MVP</div>
-                  <div class="solution-item-content">
-                    Co-designed with Product an MVP for exploring affiliated merchants, with filters by location, category, and relevance.
-                  </div>
-                </li>
-
-                <li class="solution-item">
-                  <div class="solution-item-title">6. Notification Center</div>
-                  <div class="solution-item-content">
-                    Completely redesigned the notifications experience to improve hierarchy, reduce friction, and increase visibility of relevant messages.
-                  </div>
-                </li>
-              </ul>
+              <div class="solution-description">
+                We launched Designing with Data, an initiative to embed a data-driven mindset into our design practice, tackling it from three fronts:<br><br>
+                
+                <strong>Analytics Infrastructure</strong> Integrated analytics tools into our digital products (starting with the app) to track key interactions, establish baselines, and measure the impact of improvements.<br>
+                <strong>Early Evaluation Protocols</strong> Formalized pre-release testing stages, including proofs of concept, prototypes, and usability tests with real users ensuring decisions are guided by validated insights, not isolated perceptions.<br>
+                <strong>Strategic User Research</strong><br>
+                Conducted a generative study of the SME segment to redefine our value proposition across the website and digital ecosystem.<br>
+                Planned a deep-dive study on cardholders to identify specific use cases, paving the way for hyper-personalized experiences.
+              </div>
             </div>
             <div class="solution-image-wrapper">
-              <div class="solution-phone">
-                <img src="https://via.placeholder.com/327x623/F5F5F5/1F1F1F?text=Solution+Screen" alt="App solution screen">
-              </div>
+              <img class="solution-image" src="https://via.placeholder.com/770x790/F5F5F5/1F1F1F?text=Venn+Diagram" alt="Venn diagram showing Analytics, Testing, and Research">
             </div>
           </div>
         </div>
@@ -1145,21 +1224,52 @@
       <!-- Outputs Section -->
       <section class="outputs-section">
         <h2 class="outputs-title">Outputs</h2>
-        <div class="outputs-grid">
-          <div class="output-phone">
-            <img src="https://via.placeholder.com/300x500/EDEDED/1F1F1F?text=Fuel+Map" alt="Fuel Map screen">
+        <div class="outputs-container">
+          <div class="outputs-column">
+            <div class="output-row">
+              <div class="output-card">
+                <div class="output-vs">
+                  <img src="https://via.placeholder.com/107x97/FFD361/1F1F1F?text=Old" alt="Before">
+                  <span>vs</span>
+                  <img src="https://via.placeholder.com/106x96/95FFA0/1F1F1F?text=New" alt="After">
+                </div>
+              </div>
+              <div class="output-card">
+                <img src="https://via.placeholder.com/276x123/F5F5F5/1F1F1F?text=Analytics" alt="Analytics dashboard">
+              </div>
+            </div>
+            <div class="output-card">
+              <img src="https://via.placeholder.com/564x317/F5F5F5/1F1F1F?text=Research+Insights" alt="Research insights">
+            </div>
+            <div class="output-card">
+              <img src="https://via.placeholder.com/564x317/F5F5F5/1F1F1F?text=Testing+Results" alt="Testing results">
+            </div>
           </div>
-
-          <div class="output-phone">
-            <img src="https://via.placeholder.com/300x500/EDEDED/1F1F1F?text=Benefits" alt="Benefits screen">
-          </div>
-
-          <div class="output-phone">
-            <img src="https://via.placeholder.com/300x500/EDEDED/1F1F1F?text=Merchant+Map" alt="Merchant Map screen">
-          </div>
-
-          <div class="output-phone">
-            <img src="https://via.placeholder.com/300x500/EDEDED/1F1F1F?text=Notifications" alt="Notifications screen">
+          <div class="outputs-column">
+            <div class="output-card">
+              <img src="https://via.placeholder.com/430x438/F5F5F5/1F1F1F?text=Design+System" alt="Design system">
+            </div>
+            <div class="output-card output-phones">
+              <div class="phone-mockup">
+                <div class="phone-frame"></div>
+                <div class="phone-button btn1"></div>
+                <div class="phone-button btn2"></div>
+                <div class="phone-button btn3"></div>
+                <div class="phone-button btn-right"></div>
+                <img class="phone-screen" src="https://via.placeholder.com/194x419/FFFFFF/1F1F1F?text=Before" alt="Before mobile">
+                <div class="phone-notch"></div>
+              </div>
+              <div style="text-align: center; color: #1F1F1F; font-size: 24px; font-weight: 500;">vs</div>
+              <div class="phone-mockup">
+                <div class="phone-frame"></div>
+                <div class="phone-button btn1"></div>
+                <div class="phone-button btn2"></div>
+                <div class="phone-button btn3"></div>
+                <div class="phone-button btn-right"></div>
+                <img class="phone-screen" src="https://via.placeholder.com/194x420/FFFFFF/1F1F1F?text=After" alt="After mobile">
+                <div class="phone-notch"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
