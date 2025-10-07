@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Designing with Data - Esteban Martínez</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;700&family=DM+Mono:wght@400;500&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      margin: 0;
+      background: #FFFFFF;
+      color: #1D1D1D;
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(249, 249, 249, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(29, 29, 29, 0.1);
+    }
+
+    .nav-logo {
+      height: 40px;
+      width: auto;
+      display: block;
+      background: none !important;
+      border-radius: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1D1D1D;
+      font-size: 16px;
+      font-weight: 400;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.6;
+    }
+
+    .nav-cta {
+      background: #B5FFE0;
+      color: #1F1F1F;
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-family: "DM Mono", monospace;
+      font-size: 16px;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background: #1D1D1D;
+      color: #fff;
+    }
+
+    /* Main Content */
+    main {
+      margin-top: 100px;
+      padding: 0 40px 80px;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Back Button */
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: black;
+      color: white;
+      width: 56px;
+      height: 56px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 24px;
+      font-family: "DM Mono", monospace;
+      font-weight: 500;
+      margin-bottom: 24px;
+      transition: transform 0.2s ease;
+    }
+
+    .back-button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Hero Card */
+    .hero-wrapper {
+      width: 100%;
+      padding: 40px 56px;
+      background: #E8FF5D;
+      border-radius: 64px;
+      border: 1px solid black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 120px;
+      min-height: 580px;
+    }
+
+    .hero-content {
+      width: 100%;
+      max-width: 1154px;
+      background: white;
+      border-radius: 32px;
+      border: 1px solid #1F1F1F;
+      padding: 40px;
+    }
+
+    .hero-title {
+      color: #1F1F1F;
+      font-size: 80px;
+      font-weight: 500;
+      line-height: 64px;
+      margin-bottom: 24px;
+    }
+
+    .hero-meta {
+      color: #1F1F1F;
+      font-size: 16px;
+      line-height: 19.2px;
+      margin-bottom: 56px;
+    }
+
+    .hero-meta .year {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .hero-meta .info {
+      font-weight: 200;
+    }
+
+    .hero-description {
+      color: #1F1F1F;
+      font-size: 16px;
+      font-family: "Lora", serif;
+      line-height: 1.6;
+      margin-bottom: 56px;
+    }
+
+    .hero-description strong {
+      font-weight: 700;
+    }
+
+    .hero-description .semibold {
+      font-weight: 600;
+    }
+
+    /* Sub-projects Section */
+    .subprojects-title {
+      color: #1F1F1F;
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .subprojects-grid {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .subproject-button {
+      padding: 16px;
+      background: white;
+      border-radius: 20px;
+      border: 1px solid #1F1F1F;
+      color: #1F1F1F;
+      font-size: 16px;
+      font-family: "DM Sans", sans-serif;
+      font-weight: 400;
+      line-height: 28px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .subproject-button:hover {
+      background: #F5F5F5;
+      transform: translateY(-2px);
+    }
+
+    .subproject-button.active {
+      background: #1F1F1F;
+      color: white;
+      font-weight: 600;
+    }
+
+    /* Content Container */
+    .content-wrapper {
+      max-width: 1328px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 120px;
+    }
+
+    /* Outcomes Section */
+    .outcomes-section {
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    /* Blobs Background for Outcomes */
+    .outcomes-blobs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Show blobs when outcomes section is active */
+    .outcomes-section.active .outcomes-blobs {
+      opacity: 1;
+    }
+
+    /* Noise effect overlay */
+    .outcomes-blobs::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255,255,255,.05) 1px, rgba(255,255,255,.05) 2px),
+        repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(0,0,0,.05) 1px, rgba(0,0,0,.05) 2px),
+        repeating-linear-gradient(45deg, transparent, transparent 1px, rgba(255,255,255,.02) 1px, rgba(255,255,255,.02) 2px),
+        repeating-linear-gradient(-45deg, transparent, transparent 1px, rgba(0,0,0,.02) 1px, rgba(0,0,0,.02) 2px);
+      opacity: 1;
+      pointer-events: none;
+      z-index: 10;
+    }
+    
+    .outcomes-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px) saturate(1.8);
+      opacity: 0.7;
+      width: 900px;
+      height: 900px;
+      background: conic-gradient(from 180deg, #4FACFE, #00F2FE, #43E97B, #38F9D7, #4FACFE);
+      mix-blend-mode: screen;
+      transform: translate(0, 0) scale(1);
+      will-change: transform;
+    }
+    
+    .outcomes-blob:nth-child(2) {
+      width: 1000px;
+      height: 1000px;
+      background: conic-gradient(from 0deg, #00F2FE, #4FACFE, #38F9D7, #43E97B, #00F2FE);
+    }
+
+    .outcomes-card {
+      width: 100%;
+      padding: 40px;
+      background: #1F1F1F;
+      border-radius: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .outcomes-title {
+      color: white;
+      font-size: 80px;
+      font-weight: 500;
+      line-height: 56px;
+    }
+
+    .outcomes-title .italic {
+      font-size: 64px;
+      font-style: italic;
+      font-weight: 100;
+    }
+
+    .outcomes-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .outcome-item {
+      flex: 1;
+      color: white;
+      font-family: "Lora", serif;
+    }
+
+    .outcome-item .large {
+      font-size: 32px;
+      font-weight: 400;
+    }
+
+    .outcome-item .small {
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    .outcome-divider {
+      width: 1px;
+      height: 80px;
+      background: white;
+    }
+
+    /* Scroll Sections with Sticky Effect */
+    .scroll-section {
+      position: relative;
+      height: 250vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sticky-content {
+      position: sticky;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      max-width: 1328px;
+      margin: 0 auto;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .scroll-section.active .sticky-content {
+      opacity: 1;
+    }
+
+    /* Context Section */
+    .context-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .context-text {
+      flex: 0 0 541px;
+      max-width: 541px;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .section-title {
+      color: #1F1F1F;
+      font-size: 80px;
+      font-weight: 500;
+    }
+
+    .section-description {
+      color: #1F1F1F;
+      font-size: 24px;
+      font-family: "Lora", serif;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .context-image {
+      flex: 0 0 527px;
+      max-width: 527px;
+      height: 303px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .context-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Challenge Section */
+    .challenge-wrapper {
+      width: 100%;
+      max-width: 1328px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      background: white;
+      border-radius: 16px;
+      border: 1px solid #1F1F1F;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .challenge-image {
+      flex: 0 0 375px;
+      max-width: 375px;
+      height: 284px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .challenge-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .challenge-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 750px;
+    }
+
+    .challenge-question {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .challenge-divider {
+      width: 2px;
+      min-height: 164px;
+      background: #1F1F1F;
+      flex-shrink: 0;
+    }
+
+    .challenge-text {
+      max-width: 630px;
+      color: #1F1F1F;
+      font-size: 32px;
+      font-family: "Lora", serif;
+      font-weight: 400;
+    }
+
+    /* Solution Section */
+    .solution-section {
+      height: auto !important;
+      min-height: 100vh;
+      padding: 100px 0;
+    }
+
+    .solution-section .sticky-content {
+      position: relative;
+      top: auto;
+      transform: none;
+      opacity: 1 !important;
+      padding: 0 40px;
+    }
+
+    .solution-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 80px;
+      padding: 0;
+      position: relative;
+    }
+
+    .solution-text {
+      flex: 0 0 541px;
+      max-width: 541px;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .solution-title-sticky {
+      position: sticky;
+      top: 80px;
+      z-index: 10;
+      background: white;
+      padding-top: 60px;
+      padding-bottom: 30px;
+      margin-top: -60px;
+      margin-bottom: 16px;
+    }
+    
+    .solution-title-sticky::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -24px;
+      right: -24px;
+      height: 100px;
+      background: white;
+      z-index: -1;
+    }
+    
+    .solution-title-sticky::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: -24px;
+      right: -24px;
+      height: 40px;
+      background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 1) 0%, 
+        rgba(255, 255, 255, 0.7) 40%,
+        rgba(255, 255, 255, 0) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .solution-description {
+      color: #1F1F1F;
+      font-size: 24px;
+      font-family: "Lora", serif;
+      line-height: 36px;
+      position: relative;
+    }
+
+    .solution-description .semibold {
+      font-weight: 600;
+    }
+
+    .solution-description strong {
+      font-weight: 700;
+    }
+
+    .solution-image-wrapper {
+      flex: 0 0 722px;
+      max-width: 722px;
+      position: sticky;
+      top: 120px;
+      align-self: flex-start;
+      margin-right: 0;
+    }
+
+    .solution-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .solution-image img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* Outputs Section */
+    .outputs-section {
+      padding: 80px 0;
+    }
+
+    .outputs-title {
+      color: #1F1F1F;
+      font-size: 80px;
+      font-weight: 500;
+      margin-bottom: 40px;
+    }
+
+    .outputs-container {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .outputs-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .output-card {
+      padding: 40px;
+      background: #EDEDED;
+      border-radius: 32px;
+      border: 1px solid #C2C2C2;
+      box-shadow: 0px 3px 3px 2.25px rgba(68, 68, 68, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .output-card img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .output-row {
+      display: flex;
+      gap: 20px;
+    }
+
+    .output-row .output-card {
+      flex: 1;
+      min-height: 149px;
+    }
+
+    .output-vs {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: #1F1F1F;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 36px;
+    }
+
+    .output-phones {
+      background: linear-gradient(270deg, #EDEDED 0%, #FBFBFB 50%, #BABABA 50%, #BABABA 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      min-height: 559px;
+    }
+
+    .phone-mockup {
+      position: relative;
+      width: 205px;
+      height: 419px;
+    }
+
+    .phone-frame {
+      width: 193.61px;
+      height: 419px;
+      background: #DFE3F0;
+      border-radius: 32px;
+      border: 4px solid black;
+      position: absolute;
+      left: 5.7px;
+      top: 0;
+    }
+
+    .phone-button {
+      position: absolute;
+      background: black;
+      border-top-left-radius: 1.4px;
+      border-bottom-left-radius: 1.4px;
+    }
+
+    .phone-button.btn1 {
+      width: 5.69px;
+      height: 14.24px;
+      left: 0;
+      top: 48.88px;
+    }
+
+    .phone-button.btn2 {
+      width: 5.69px;
+      height: 26.57px;
+      left: 0;
+      top: 73.55px;
+    }
+
+    .phone-button.btn3 {
+      width: 5.69px;
+      height: 26.57px;
+      left: 0;
+      top: 108.66px;
+    }
+
+    .phone-button.btn-right {
+      width: 5.69px;
+      height: 43.66px;
+      right: 0;
+      top: 127.17px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-right-radius: 1.4px;
+      border-bottom-right-radius: 1.4px;
+    }
+
+    .phone-screen {
+      width: 193.66px;
+      height: 419px;
+      border-radius: 32px;
+      position: absolute;
+      left: 6.17px;
+      top: -0.52px;
+    }
+
+    .phone-notch {
+      width: 61.22px;
+      height: 18.51px;
+      background: black;
+      border-radius: 70px;
+      position: absolute;
+      left: 72.13px;
+      top: 5.7px;
+    }
+
+    /* Footer */
+    footer {
+      background: #F9F9F9;
+      padding: 40px;
+      margin: 80px 40px 40px;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-card {
+      background: white;
+      border-radius: 16px;
+      border: 1px solid #1F1F1F;
+      padding: 40px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-colors {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .color-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid black;
+    }
+
+    .color-square {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      border: 2px solid black;
+    }
+
+    .color-yellow { background: #E8FF5D; }
+    .color-purple { background: #8657E2; }
+    .color-mint { background: #B5FFE0; }
+
+    .footer-logo {
+      width: 74px;
+      height: 25px;
+      background: black;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 0;
+    }
+
+    .social-btn {
+      width: 48px;
+      height: 48px;
+      background: black;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease;
+    }
+
+    .social-btn:hover {
+      background: #B5FFE0;
+    }
+
+    .social-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: white;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.2s ease;
+    }
+
+    .social-btn:hover svg {
+      stroke: black;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-text {
+      color: #1D1D1D;
+      font-size: 40px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .footer-cta {
+      background: #B5FFE0;
+      color: #1F1F1F;
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-family: "DM Mono", monospace;
+      font-size: 24px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .footer-cta:hover {
+      background: black;
+      color: white;
+    }
+
+    .footer-cta-arrow {
+      width: 16px;
+      height: 16px;
+      border: 2.4px solid currentColor;
+      border-left: none;
+      border-bottom: none;
+      transform: rotate(45deg);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .outcomes-blob {
+        width: 600px;
+        height: 600px;
+        filter: blur(50px) saturate(1.8);
+      }
+      
+      .outcomes-blob:nth-child(2) {
+        width: 700px;
+        height: 700px;
+      }
+
+      nav {
+        padding: 20px 32px;
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      main {
+        padding: 0 32px 80px;
+      }
+
+      .hero-wrapper {
+        padding: 32px;
+      }
+
+      .hero-title {
+        font-size: 56px;
+        line-height: 1.2;
+      }
+
+      .context-wrapper,
+      .solution-wrapper,
+      .challenge-wrapper {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .context-text,
+      .solution-text,
+      .challenge-content {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .context-image,
+      .solution-image-wrapper {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .challenge-image {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .outputs-container {
+        flex-direction: column;
+      }
+
+      .output-row {
+        flex-direction: column;
+      }
+
+      .outcomes-grid {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .outcome-divider {
+        width: 80px;
+        height: 1px;
+      }
+
+      footer {
+        padding: 40px 32px;
+        margin: 80px 32px 40px;
+      }
+
+      .footer-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-right {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .scroll-section {
+        height: auto;
+        min-height: auto;
+        padding: 80px 0;
+      }
+
+      .sticky-content {
+        position: relative;
+        top: auto;
+        transform: none;
+        opacity: 1 !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .outcomes-blob {
+        width: 500px;
+        height: 500px;
+        filter: blur(40px) saturate(1.6);
+      }
+      
+      .outcomes-blob:nth-child(2) {
+        width: 550px;
+        height: 550px;
+      }
+
+      .section-title,
+      .outcomes-title,
+      .outputs-title {
+        font-size: 56px;
+      }
+
+      .section-description,
+      .solution-description {
+        font-size: 20px;
+        line-height: 32px;
+      }
+
+      .challenge-text {
+        font-size: 24px;
+      }
+
+      .output-phones {
+        flex-direction: column;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .outcomes-blob {
+        width: 400px;
+        height: 400px;
+        filter: blur(35px) saturate(1.4);
+        opacity: 0.6;
+      }
+      
+      .outcomes-blob:nth-child(2) {
+        width: 450px;
+        height: 450px;
+      }
+
+      .hero-title {
+        font-size: 40px;
+      }
+
+      .section-title,
+      .outcomes-title,
+      .outputs-title {
+        font-size: 40px;
+      }
+
+      .venn-circle {
+        width: 200px;
+        height: 200px;
+        font-size: 18px;
+      }
+
+      .venn-circle.blue {
+        left: 20px;
+        top: 200px;
+      }
+
+      .venn-circle.purple {
+        left: 90px;
+        top: 40px;
+      }
+
+      .venn-circle.red {
+        left: 160px;
+        top: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <a href="index.html#hero" class="nav-logo-link" aria-label="Go to home">
+      <img 
+        src="https://estebanmartinez.site/assets/img/esteban_logo.svg" 
+        alt="Esteban Martínez logo" 
+        class="nav-logo" 
+        onerror="this.style.display='none'"
+      />
+    </a>
+
+    <div class="nav-links">
+      <a href="index.html#about-card">About</a>
+      <a href="index.html#work-section">Work</a>
+      <a href="index.html#footer">Contact</a>
+      <a href="https://calendly.com/estebanmtzsevilla/30min" target="_blank" class="nav-cta">Book a meeting</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <a href="scaling-design.html" class="back-button">&lt;</a>
+
+    <!-- Hero Section -->
+    <div class="hero-wrapper">
+      <div class="hero-content">
+        <h1 class="hero-title">Scaling design</h1>
+        
+        <p class="hero-meta">
+          <span class="year">2020-2025.</span>
+          <span class="info"> Financial services/Fintech, UX leadership, Product design</span>
+        </p>
+
+        <div class="hero-description">
+          <p style="margin-bottom: 1.5em;">
+            For over five years, I've helped transform our team into a <strong>strategic driver of the company's digital evolution.</strong><br>
+            The design team evolved <strong>from being a service provider</strong> of isolated outputs <span class="semibold">into a strategic driver</span> of experience enhancement. Design became involved earlier in the process, influencing product direction, improving operations, and enabling better business decisions through evidence, insight and systems thinking.
+          </p>
+          
+          <p style="margin-bottom: 1.5em;">
+            Our mission was to establish a data-driven, customer-centered practice that created alignment across stakeholders and delivered measurable business outcomes across the entire ecosystem (web, app, physical touchpoints and fintech products).
+          </p>
+          
+          <p>
+            My leadership focused on building capabilities instead of dependencies.<br>
+            We scaled research literacy. We matured design ops. We bridged silos between tech, marketing and product. And most importantly: we made design matter.
+          </p>
+        </div>
+
+        <!-- Sub-projects -->
+        <div>
+          <div class="subprojects-title">Here's a few of the initiatives we tackled</div>
+          <div class="subprojects-grid">
+            <a href="designing-with-data.html" class="subproject-button active">Designing with data</a>
+            <a href="website-revamp.html" class="subproject-button">Website Revamp</a>
+            <a href="mobile-app.html" class="subproject-button">Mobile App</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Sections -->
+    <div class="content-wrapper">
+      <!-- Outcomes Section with Scroll Effect -->
+      <section class="scroll-section outcomes-section" id="outcomes">
+        <div class="outcomes-blobs">
+          <div class="outcomes-blob"></div>
+          <div class="outcomes-blob"></div>
+        </div>
+        <div class="sticky-content">
+          <div class="outcomes-card">
+            <h2 class="outcomes-title">Outcomes</h2>
+            <div class="outcomes-grid">
+              <div class="outcome-item">
+                <span class="large">40%</span><br>
+                <span class="small">Reduced rework cycles</span>
+              </div>
+              <div class="outcome-divider"></div>
+              <div class="outcome-item">
+                <span class="small">UX issues detected</span><br>
+                <span class="large">2x earlier</span>
+              </div>
+              <div class="outcome-divider"></div>
+              <div class="outcome-item">
+                <span class="large">100% of product squads</span>
+                <span class="small"> adopted analytics tools</span>
+              </div>
+              <div class="outcome-divider"></div>
+              <div class="outcome-item">
+                <span class="small">Centralized repository </span>
+                <span class="large">enabled decision making</span>
+                <span class="small"> for the whole company</span>
+              </div>
+            </div>
+            <div class="outcomes-footer">
+              More importantly, the mindset shifted: <span class="emphasis">Data became a shared language between design, product, and business.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Context Section -->
+      <section class="scroll-section context-section" id="context">
+        <div class="sticky-content">
+          <div class="context-wrapper">
+            <div class="context-text">
+              <h2 class="section-title">Context</h2>
+              <p class="section-description">
+                In our organization, product and design decisions were often driven by personal opinions, hierarchy, and internal assumptions, resulting in solutions misaligned with real user needs.
+              </p>
+            </div>
+            <div class="context-image">
+              <img src="https://via.placeholder.com/527x303/667eea/FFFFFF?text=Context+Image" alt="Context illustration">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Challenge Section -->
+      <section class="scroll-section challenge-section" id="challenge">
+        <div class="sticky-content">
+          <div class="challenge-wrapper">
+            <div class="challenge-image">
+              <img src="https://via.placeholder.com/375x284/f093fb/FFFFFF?text=Challenge" alt="Challenge illustration">
+            </div>
+            <div class="challenge-content">
+              <h2 class="section-title">Challenge</h2>
+              <div class="challenge-question">
+                <div class="challenge-divider"></div>
+                <p class="challenge-text">
+                  How might we foster a culture where design decisions are grounded in evidence and user insights, minimizing bias and delivering more relevant, high-impact experiences?
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Solution Section -->
+      <section class="scroll-section solution-section" id="solution">
+        <div class="sticky-content">
+          <div class="solution-wrapper">
+            <div class="solution-text">
+              <div class="solution-title-sticky">
+                <h2 class="section-title">Solution</h2>
+              </div>
+              <div class="solution-description">
+                We launched Designing with Data, an initiative to embed a data-driven mindset into our design practice, tackling it from three fronts:<br><br>
+                
+                <strong>Analytics Infrastructure</strong> Integrated analytics tools into our digital products (starting with the app) to track key interactions, establish baselines, and measure the impact of improvements.<br>
+                <strong>Early Evaluation Protocols</strong> Formalized pre-release testing stages, including proofs of concept, prototypes, and usability tests with real users ensuring decisions are guided by validated insights, not isolated perceptions.<br>
+                <strong>Strategic User Research</strong><br>
+                Conducted a generative study of the SME segment to redefine our value proposition across the website and digital ecosystem.<br>
+                Planned a deep-dive study on cardholders to identify specific use cases, paving the way for hyper-personalized experiences.
+              </div>
+            </div>
+            <div class="solution-image-wrapper">
+              <img class="solution-image" src="https://via.placeholder.com/770x790/F5F5F5/1F1F1F?text=Venn+Diagram" alt="Venn diagram showing Analytics, Testing, and Research">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Outputs Section -->
+      <section class="outputs-section">
+        <h2 class="outputs-title">Outputs</h2>
+        <div class="outputs-container">
+          <div class="outputs-column">
+            <div class="output-row">
+              <div class="output-card">
+                <div class="output-vs">
+                  <img src="https://via.placeholder.com/107x97/FFD361/1F1F1F?text=Old" alt="Before">
+                  <span>vs</span>
+                  <img src="https://via.placeholder.com/106x96/95FFA0/1F1F1F?text=New" alt="After">
+                </div>
+              </div>
+              <div class="output-card">
+                <img src="https://via.placeholder.com/276x123/F5F5F5/1F1F1F?text=Analytics" alt="Analytics dashboard">
+              </div>
+            </div>
+            <div class="output-card">
+              <img src="https://via.placeholder.com/564x317/F5F5F5/1F1F1F?text=Research+Insights" alt="Research insights">
+            </div>
+            <div class="output-card">
+              <img src="https://via.placeholder.com/564x317/F5F5F5/1F1F1F?text=Testing+Results" alt="Testing results">
+            </div>
+          </div>
+          <div class="outputs-column">
+            <div class="output-card">
+              <img src="https://via.placeholder.com/430x438/F5F5F5/1F1F1F?text=Design+System" alt="Design system">
+            </div>
+            <div class="output-card output-phones">
+              <div class="phone-mockup">
+                <div class="phone-frame"></div>
+                <div class="phone-button btn1"></div>
+                <div class="phone-button btn2"></div>
+                <div class="phone-button btn3"></div>
+                <div class="phone-button btn-right"></div>
+                <img class="phone-screen" src="https://via.placeholder.com/194x419/FFFFFF/1F1F1F?text=Before" alt="Before mobile">
+                <div class="phone-notch"></div>
+              </div>
+              <div style="text-align: center; color: #1F1F1F; font-size: 24px; font-weight: 500;">vs</div>
+              <div class="phone-mockup">
+                <div class="phone-frame"></div>
+                <div class="phone-button btn1"></div>
+                <div class="phone-button btn2"></div>
+                <div class="phone-button btn3"></div>
+                <div class="phone-button btn-right"></div>
+                <img class="phone-screen" src="https://via.placeholder.com/194x420/FFFFFF/1F1F1F?text=After" alt="After mobile">
+                <div class="phone-notch"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-card">
+      <div class="footer-left">
+        <div class="footer-colors">
+          <div class="color-dot color-yellow"></div>
+          <div class="color-square color-purple"></div>
+          <div class="color-square color-mint"></div>
+        </div>
+        <div class="footer-logo"></div>
+        <div class="footer-socials">
+          <a href="mailto:estebanmtzsevilla@gmail.com" class="social-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/esteban-martinez-design/" target="_blank" class="social-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/525584242330" target="_blank" class="social-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-text">wanna chat?</div>
+        <a href="https://calendly.com/estebanmtzsevilla/30min" target="_blank" class="footer-cta">
+          Book a meeting
+          <div class="footer-cta-arrow"></div>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Observer Script -->
+  <script>
+    const scrollSections = document.querySelectorAll('.scroll-section');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          } else {
+            entry.target.classList.remove('active');
+          }
+        });
+      },
+      { 
+        threshold: 0.3,
+        rootMargin: '0px'
+      }
+    );
+
+    scrollSections.forEach((section) => observer.observe(section));
+
+    // Animate blobs in Outcomes section
+    function wanderBlob(blob, speed=0.015, scaleFactor=0.1, freq=0.002) {
+      let target = { 
+        x: Math.random() * window.innerWidth, 
+        y: Math.random() * window.innerHeight 
+      };
+      let pos = { 
+        x: Math.random() * window.innerWidth, 
+        y: Math.random() * window.innerHeight 
+      };
+      let time = 0;
+      
+      function move() {
+        time += 1;
+        const dx = target.x - pos.x;
+        const dy = target.y - pos.y;
+        pos.x += dx * speed;
+        pos.y += dy * speed;
+        const breathing = 1 + scaleFactor * Math.sin(time * freq);
+        blob.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(${breathing})`;
+        
+        if(Math.abs(dx) < 20 && Math.abs(dy) < 20) {
+          target = { 
+            x: Math.random() * window.innerWidth, 
+            y: Math.random() * window.innerHeight 
+          };
+        }
+        requestAnimationFrame(move);
+      }
+      move();
+    }
+
+    document.querySelectorAll(".outcomes-blob").forEach((blob, i) => {
+      wanderBlob(
+        blob, 
+        0.010 + Math.random() * 0.008,
+        0.06 + Math.random() * 0.03,
+        0.005 + Math.random() * 0.003
+      );
+    });
+  </script>
+</body>
+</html>

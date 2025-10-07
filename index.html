@@ -1,0 +1,1696 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Esteban Martínez – Design Leader</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body { 
+      margin: 0; 
+      background: #F9F9F9; 
+      color: #1D1D1D; 
+      font-family: "DM Sans", sans-serif; 
+      overflow-x: hidden; 
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(249, 249, 249, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(29, 29, 29, 0.1);
+    }
+
+    .nav-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+  background: none !important;
+  border-radius: 0;
+}
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1D1D1D;
+      font-size: 16px;
+      font-weight: 400;
+      transition: all 0.2s ease;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:not(.nav-cta):hover {
+      border-bottom-color: #D795FF;
+    }
+
+    .nav-cta {
+      background: #B5FFE0;
+      color: #1F1F1F;
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-family: "DM Mono", monospace;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      display: inline-block;
+      border-bottom: none;
+    }
+
+    nav .nav-cta:hover,
+    .nav-links .nav-cta:hover {
+      background: #000 !important;
+      color: #fff !important;
+      border-bottom: none;
+    }
+
+    .footer-right .nav-cta {
+      font-weight: 500;
+    }
+
+    .footer-cta-wrapper {
+      display: inline-block;
+    }
+
+    .footer-cta-wrapper a {
+      font-weight: 500 !important;
+      text-decoration: none !important;
+    }
+
+    header.hero {
+      position: relative; 
+      height: 100vh; 
+      min-height: 100vh;
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center;
+      text-align: center; 
+      z-index: 1;
+      gap: 16px;
+    }
+    
+    header.hero h1 { 
+      font-size: clamp(48px, 12vw, 120px); 
+      margin-bottom: 0; 
+      font-weight: 500; 
+      line-height: 1;
+      opacity: 1;
+    }
+
+    .hero-glitch-line {
+      font-size: clamp(18px, 3.5vw, 32px);
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .typewriter-wrapper {
+      position: relative;
+      display: inline-block;
+      min-width: 180px;
+    }
+
+    .typewriter-text {
+      position: relative;
+      display: inline-block;
+      font-weight: 400;
+      font-style: italic;
+      color: #1D1D1D;
+    }
+
+    .typewriter-text::after {
+      content: '';
+      display: inline-block;
+      width: 2px;
+      height: 0.9em;
+      background: #1D1D1D;
+      margin-left: 2px;
+      animation: blink 0.8s infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .blobs {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100vh;
+      overflow: hidden; 
+      z-index: 0; 
+      pointer-events: none;
+    }
+
+    .blobs::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255,255,255,.05) 1px, rgba(255,255,255,.05) 2px),
+        repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(0,0,0,.05) 1px, rgba(0,0,0,.05) 2px),
+        repeating-linear-gradient(45deg, transparent, transparent 1px, rgba(255,255,255,.02) 1px, rgba(255,255,255,.02) 2px),
+        repeating-linear-gradient(-45deg, transparent, transparent 1px, rgba(0,0,0,.02) 1px, rgba(0,0,0,.02) 2px);
+      opacity: 1;
+      pointer-events: none;
+      z-index: 10;
+    }
+    
+    .blob {
+      position: absolute; 
+      border-radius: 2878.676px;
+      background: conic-gradient(from 180deg at 50% 50%, #95FFA0 162.3749577999115deg, #95B9FF 233.6249542236328deg, #D795FF 310.4999613761902deg);
+      mix-blend-mode: overlay;
+      filter: blur(40px);
+      opacity: 0.9;
+      width: 600px; 
+      height: 600px;
+      transform: translate(0, 0) scale(1);
+      will-change: transform;
+      transition: opacity 0.5s ease;
+    }
+    
+    .blob:nth-child(2) { width: 500px; height: 500px; }
+    .blob:nth-child(3) { width: 700px; height: 700px; }
+
+    .timeline-wrapper {
+      position: relative;
+      height: 5000vh;
+      background: #F9F9F9;
+    }
+
+    .timeline-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .fade-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: #111;
+      z-index: 1001;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .about-title {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 56px;
+      font-weight: 500;
+      color: #fff;
+      z-index: 1002;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .numbers-text {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1002;
+      opacity: 0;
+      pointer-events: none;
+      max-width: 1200px;
+      width: 90%;
+      padding: 0 40px;
+    }
+
+    .numbers-text h2 {
+      font-size: 56px;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 48px;
+      text-align: left;
+    }
+
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+      min-height: 400px;
+    }
+
+    .number-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .number-item:nth-child(1) {
+      grid-column: 1 / 5;
+    }
+
+    .number-item:nth-child(2) {
+      grid-column: 5 / 9;
+    }
+
+    .number-item:nth-child(3) {
+      grid-column: 9 / 13;
+    }
+
+    .number-item:nth-child(4) {
+      grid-column: 2 / 6;
+    }
+
+    .number-item:nth-child(5) {
+      grid-column: 7 / 11;
+    }
+
+    .number-value {
+      font-family: "DM Sans", sans-serif;
+      font-size: 64px;
+      font-weight: 700;
+      color: #B5FFE0;
+      line-height: 1;
+    }
+
+    .number-description {
+      font-family: "Lora", serif;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #fff;
+      font-weight: 400;
+    }
+
+    .about-wrap { 
+      position: relative; 
+      height: 240vh; 
+      z-index: 1;
+      margin-top: 20vh;
+    }
+    
+    .about-card {
+      position: sticky; 
+      top: 50%; 
+      transform: translateY(-50%) scale(0.8);
+      background: #111; 
+      color: #fff; 
+      padding: 60px 40px; 
+      max-width: 1200px; 
+      margin: 0 auto;
+      border-radius: 40px; 
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      transition: transform 0.3s ease-out;
+    }
+    
+    .about-card h2 { 
+      font-size: 56px; 
+      margin-bottom: 24px; 
+      font-family: "DM Sans", sans-serif;
+      font-weight: 500;
+    }
+    
+    .about-content { 
+      display: flex; 
+      flex-direction: row; 
+      flex-wrap: nowrap; 
+      gap: 40px; 
+      align-items: center; 
+    }
+    
+    .about-video { 
+      flex: 0 0 40%; 
+    }
+    
+    .about-video video { 
+      width: 100%; 
+      border-radius: 20px; 
+      display: block; 
+    }
+    
+    .divider { 
+      flex: 0 0 1px; 
+      background: rgba(255, 255, 255, 0.5); 
+      align-self: stretch; 
+    }
+    
+    .about-text {
+      flex: 1; 
+      font-family: "Lora", serif; 
+      font-size: 24px; 
+      font-weight: 400; 
+      color: #FFF; 
+      line-height: 1.6;
+    }
+    
+    .sentence { 
+      margin-bottom: 1.5em; 
+      margin-top: 0; 
+    }
+    
+    .word { 
+      display: inline-block; 
+      margin-right: 0.35em; 
+      white-space: nowrap; 
+    }
+    
+    .char { 
+      opacity: 0.4; 
+      transition: opacity 0.3s ease-out; 
+      display: inline-block; 
+      font-family: "Lora", serif; 
+    }
+
+    .char.italic-bold {
+      font-style: italic;
+      font-weight: 700;
+    }
+
+    .timeline-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 50vw 0 50vw;
+      will-change: transform;
+      z-index: 3;
+      opacity: 0;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(29, 29, 29, 0.15);
+      transform: translateY(-50%);
+      z-index: 0;
+    }
+
+    .milestone {
+      position: relative;
+      flex-shrink: 0;
+      width: 1000px;
+      height: 100vh;
+      padding: 0 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      opacity: 0.3;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+    }
+
+    .milestone.active {
+      opacity: 1;
+    }
+
+    .milestone-year-wrapper {
+      margin-bottom: 16px;
+    }
+
+    .milestone-year {
+      font-family: "DM Sans", sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #1D1D1D;
+      opacity: 0.32;
+    }
+
+    .milestone-content {
+      background: #F9F9F9;
+      padding: 24px;
+      border-radius: 16px;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .milestone-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1D1D1D;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .milestone-text {
+      font-family: "Lora", serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: #1D1D1D;
+      max-width: 400px;
+    }
+
+    .milestone-image {
+      width: 400px;
+      height: 280px;
+      background: rgba(29, 29, 29, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(29, 29, 29, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(29, 29, 29, 0.3);
+      font-size: 14px;
+      overflow: hidden;
+    }
+
+    .milestone-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .milestone:nth-child(odd) .milestone-content:first-child {
+      position: absolute;
+      top: 15vh;
+      left: 100px;
+      right: 100px;
+    }
+
+    .milestone:nth-child(odd) .milestone-content:last-child {
+      position: absolute;
+      bottom: 15vh;
+      left: 100px;
+      right: 100px;
+    }
+
+    .milestone:nth-child(even) .milestone-content:first-child {
+      position: absolute;
+      top: 15vh;
+      left: 100px;
+      right: 100px;
+    }
+
+    .milestone:nth-child(even) .milestone-content:last-child {
+      position: absolute;
+      bottom: 15vh;
+      left: 100px;
+      right: 100px;
+    }
+
+    .work-section {
+      position: relative;
+      height: 400vh;
+      background: #F9F9F9;
+    }
+
+    .work-marquee-wrapper {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      z-index: 0;
+    }
+
+    .work-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 40px;
+      opacity: 0;
+      font-size: 160px;
+      font-weight: 700;
+      color: #1D1D1D;
+      line-height: 1;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      text-transform: lowercase;
+      z-index: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .work-line {
+      display: flex;
+      width: 200%;
+    }
+
+    .work-line span {
+      flex-shrink: 0;
+      padding-right: 64px;
+    }
+
+    .line1 { animation: marquee-left 20s linear infinite; }
+    .line2 { animation: marquee-right 35s linear infinite; }
+    .line3 { animation: marquee-left 50s linear infinite; }
+
+    @keyframes marquee-left {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes marquee-right {
+      0%   { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    .cards-container {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: grid;
+      place-items: center;
+      perspective: 1600px;
+      overflow: visible;
+      z-index: 1;
+    }
+
+    .work-card {
+      position: absolute;
+      width: 400px;
+      height: 640px;
+      opacity: 1;
+      background: #1F1F1F;
+      border-radius: 40px;
+      border: 8px solid #000;
+      overflow: hidden;
+    }
+
+    .card-gradient-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: visible;
+      z-index: 0;
+    }
+
+    .card-gradient-bg::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255,255,255,.05) 1px, rgba(255,255,255,.05) 2px),
+        repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(0,0,0,.05) 1px, rgba(0,0,0,.05) 2px),
+        repeating-linear-gradient(45deg, transparent, transparent 1px, rgba(255,255,255,.02) 1px, rgba(255,255,255,.02) 2px),
+        repeating-linear-gradient(-45deg, transparent, transparent 1px, rgba(0,0,0,.02) 1px, rgba(0,0,0,.02) 2px);
+      opacity: 1;
+      pointer-events: none;
+    }
+
+    .gradient-blob {
+      position: absolute;
+      width: 900px;
+      height: 900px;
+      right: -450px;
+      bottom: -450px;
+      border-radius: 3037.867px;
+      background: conic-gradient(from 180deg at 50% 50%, #FF6161 0deg, #FFD361 70.49995422363281deg, #95FFA0 162.3749577999115deg, #95B9FF 233.6249542236328deg, #D795FF 310.4999613761902deg);
+      mix-blend-mode: overlay;
+      filter: blur(132.34390258789062px);
+      animation: rotateBlob 3s linear infinite;
+    }
+
+    @keyframes rotateBlob {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .work-card.c1 .gradient-blob {
+      animation-delay: 0s;
+    }
+
+    .work-card.c2 .gradient-blob {
+      animation-delay: -5s;
+    }
+
+    .work-card.c3 .gradient-blob {
+      animation-delay: -10s;
+    }
+
+    .work-card.c4 .gradient-blob {
+      animation-delay: -15s;
+    }
+
+    .card-image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      mix-blend-mode: soft-light;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 14px;
+    }
+
+    .card-content {
+      position: absolute;
+      top: 80px;
+      left: 24px;
+      width: 347px;
+      background: transparent;
+      border-radius: 0;
+      border: none;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 0;
+      text-align: left;
+    }
+
+    .card-title {
+      font-size: 40px;
+      font-weight: 400;
+      color: #fff;
+      line-height: 64px;
+      font-family: "DM Sans", sans-serif;
+    }
+
+    .card-description {
+      font-size: 20px;
+      font-weight: 300;
+      color: #fff;
+      line-height: 30px;
+      font-family: "Lora", serif;
+      width: 318px;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .card-tag {
+      padding: 4px 8px;
+      background: rgba(255, 255, 255, 0.24);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 12px;
+      font-family: "DM Sans", sans-serif;
+      font-weight: 400;
+    }
+
+    .card-cta-wrapper {
+      position: absolute;
+      left: 73px;
+      bottom: 56px;
+      z-index: 3;
+    }
+
+    .card-cta-wrapper .cta-pill {
+      padding: 16px 40px;
+      font-size: 24px;
+    }
+
+    .work-card.c1 { z-index: 101; }
+    .work-card.c2 { z-index: 102; }
+    .work-card.c3 { z-index: 103; }
+    .work-card.c4 { z-index: 104; }
+
+    :root {
+      --bg: #F9F9F9;
+      --black: #1D1D1D;
+      --white: #FFFFFF;
+      --mint: #B5FFE0;
+    }
+
+    footer.site-footer { 
+      background: var(--bg); 
+      padding: 80px 40px 120px; 
+      position: relative; 
+      z-index: 10;
+    }
+    
+    .footer-inner { 
+      max-width: 1280px; 
+      margin: 0 auto; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 40px; 
+    }
+    
+    .footer-title { 
+      font-size: 64px; 
+      font-weight: 500; 
+      color: var(--black); 
+    }
+    
+    .footer-card {
+      background: var(--white); 
+      border-radius: 16px; 
+      border: 1px solid var(--black);
+      padding: 40px 24px; 
+      display: flex; 
+      gap: 80px; 
+      justify-content: space-between; 
+      align-items: flex-start;
+    }
+    
+    .footer-left { 
+      flex: 1 1 0; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 40px; 
+    }
+    
+    .footer-left p { 
+      font-size: 24px; 
+      margin: 0; 
+    }
+    
+    .brand-socials { 
+      display: flex; 
+      align-items: center; 
+      gap: 24px; 
+    }
+    
+    .brand-socials img { 
+      height: 48px; 
+    }
+
+    .socials { 
+      display: flex; 
+      gap: 16px; 
+    }
+    
+    .icon-btn {
+      display: flex; 
+      justify-content: center; 
+      align-items: center;
+      width: 48px; 
+      height: 48px; 
+      border-radius: 50%;
+      background: var(--black); 
+      transition: background-color .2s ease, color .2s ease;
+      color: var(--white);
+    }
+    
+    .icon-btn i { 
+      stroke: currentColor; 
+    }
+    
+    .icon-btn:hover { 
+      background: var(--mint); 
+      color: var(--black); 
+    }
+
+    .footer-right { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 40px; 
+      align-items: flex-start; 
+    }
+    
+    .footer-right h3 { 
+      font-size: 40px; 
+      margin: 0; 
+      color: var(--black);
+      font-weight: 400;
+    }
+
+    .footer-card a.nav-cta {
+      all: unset;
+      background: #B5FFE0;
+      color: #1F1F1F;
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-family: "DM Mono", monospace;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .footer-card a.nav-cta:hover {
+      background: #1F1F1F;
+      color: #fff;
+    }
+
+    .cta-pill {
+      display: inline-flex; 
+      align-items: center; 
+      gap: 10px;
+      background: #000; 
+      color: #fff;
+      border-radius: 40px; 
+      padding: 8px 16px;
+      font-family: "DM Mono", monospace; 
+      font-size: 20px; 
+      font-weight: 500;
+      text-decoration: none;
+      transition: background-color .2s ease, color .2s ease;
+    }
+    
+    .cta-pill:hover { 
+      background: #B5FFE0; 
+      color: #000; 
+    }
+    
+    .cta-pill:active { 
+      background: #000; 
+      color: #fff; 
+    }
+
+    @media (max-width: 1000px) {
+      .footer-card { flex-direction: column; gap: 40px; }
+      .footer-title { font-size: 48px; }
+      .footer-right h3 { font-size: 32px; }
+      .work-card { 
+        width: 350px; 
+        height: 560px; 
+      }
+      .card-content {
+        top: 60px;
+        left: 20px;
+        width: 310px;
+      }
+      .card-title { font-size: 32px; line-height: 48px; }
+      .card-description { font-size: 18px; line-height: 27px; width: 280px; }
+      .card-cta-wrapper {
+        left: 60px;
+        bottom: 48px;
+      }
+      .card-cta-wrapper .cta-pill {
+        padding: 12px 32px;
+        font-size: 20px;
+      }
+      .work-background { font-size: 80px; }
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 14px; }
+      .nav-cta { padding: 6px 12px; font-size: 14px; }
+    }
+
+    @media (max-width: 768px) {
+      .timeline-wrapper { height: 2500vh; }
+      .work-section { height: 300vh; }
+      
+      header.hero h1 { font-size: clamp(40px, 10vw, 80px); }
+      .hero-glitch-line { font-size: clamp(16px, 3.5vw, 28px); }
+      .milestone { width: 800px; padding: 0 60px; }
+      .milestone-title { font-size: 24px; }
+      .milestone-text { font-size: 16px; max-width: 300px; }
+      .milestone-year { font-size: 24px; }
+      .milestone-image { width: 320px; height: 220px; }
+      .about-title { font-size: 40px; }
+      .numbers-text { padding: 0 30px; max-width: 700px; }
+      .numbers-text h2 { font-size: 40px; margin-bottom: 32px; }
+      .numbers-grid { 
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        gap: 20px;
+        min-height: 300px;
+      }
+      .number-item:nth-child(1) {
+        grid-column: 1 / 5;
+        grid-row: 1 / 2;
+      }
+      .number-item:nth-child(2) {
+        grid-column: 1 / 3;
+        grid-row: 2 / 3;
+      }
+      .number-item:nth-child(3) {
+        grid-column: 3 / 5;
+        grid-row: 2 / 3;
+      }
+      .number-item:nth-child(4) {
+        grid-column: 1 / 3;
+        grid-row: 3 / 4;
+      }
+      .number-item:nth-child(5) {
+        grid-column: 3 / 5;
+        grid-row: 3 / 4;
+      }
+      .number-value { font-size: 48px; }
+      .number-description { font-size: 16px; }
+      .about-card { padding: 40px 24px; margin: 0 16px; }
+      .about-card h2 { font-size: 40px; }
+      .about-text { font-size: 18px; }
+      .about-content { flex-direction: column; flex-wrap: wrap; }
+      .divider { display: none; }
+      .milestone-content { padding: 20px; }
+      .milestone:nth-child(odd) .milestone-content:first-child,
+      .milestone:nth-child(even) .milestone-content:first-child { top: 12vh; }
+      .milestone:nth-child(odd) .milestone-content:last-child,
+      .milestone:nth-child(even) .milestone-content:last-child { bottom: 12vh; }
+      .footer-title { font-size: 36px; }
+      .footer-left p { font-size: 18px; line-height: 1.5; }
+      .footer-right h3 { font-size: 28px; }
+      .brand-socials { flex-direction: column; align-items: center; gap: 16px; }
+      .socials { flex-direction: column; gap: 12px; }
+      .footer-card { align-items: center; text-align: center; padding: 32px 24px; }
+      .footer-left { align-items: center; }
+      .footer-right { align-items: center; }
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .timeline-wrapper { height: 2000vh; }
+      .work-section { height: 250vh; }
+      
+      .hero-glitch-line { font-size: clamp(14px, 3vw, 24px); gap: 6px; }
+      .typewriter-wrapper { min-width: 140px; }
+      .milestone { width: 600px; padding: 0 40px; }
+      .milestone-title { font-size: 20px; }
+      .milestone-text { font-size: 15px; max-width: 260px; }
+      .milestone-year { font-size: 20px; }
+      .milestone-image { width: 280px; height: 200px; }
+      .about-title { font-size: 32px; }
+      .numbers-text { padding: 0 20px; max-width: 100%; }
+      .numbers-text h2 { font-size: 32px; margin-bottom: 24px; }
+      .numbers-grid { 
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 32px;
+        min-height: auto;
+      }
+      .number-item:nth-child(1),
+      .number-item:nth-child(2),
+      .number-item:nth-child(3),
+      .number-item:nth-child(4),
+      .number-item:nth-child(5) {
+        grid-column: 1 / 2;
+        grid-row: auto;
+      }
+      .number-value { font-size: 48px; }
+      .number-description { font-size: 15px; }
+      .milestone-content { padding: 16px; }
+      .milestone:nth-child(odd) .milestone-content:first-child,
+      .milestone:nth-child(even) .milestone-content:first-child { top: 10vh; }
+      .milestone:nth-child(odd) .milestone-content:last-child,
+      .milestone:nth-child(even) .milestone-content:last-child { bottom: 10vh; }
+      .work-card { width: 85vw; height: 450px; }
+      .card-content {
+        top: 40px;
+        left: 30px;
+        width: calc(100% - 60px);
+        height: calc(100% - 90px);
+        font-size: 18px;
+      }
+      .work-background { font-size: 60px; }
+      .footer-card { padding: 24px 16px; }
+      .footer-left p {
+        font-size: 15px;
+        line-height: 1.6;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      .footer-left p br { display: none; }
+      .brand-socials img { height: 36px; }
+      .cta-pill { font-size: 16px; padding: 6px 14px; }
+      .footer-right h3 { font-size: 22px; }
+      .footer-title { font-size: 28px; text-align: center; }
+    }
+  
+.nav-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+  background: none !important;
+  border-radius: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR COMPONENT -->
+<nav>
+  <a href="#hero" class="nav-logo-link" aria-label="Go to top">
+    <img 
+      src="https://estebanmartinez.site/assets/img/esteban_logo.svg" 
+      alt="Esteban Martínez logo" 
+      class="nav-logo" 
+      onerror="this.style.display='none'"
+    />
+  </a>
+
+  <div class="nav-links">
+    <a href="#timeline-wrapper">About</a>
+    <a href="#work-section">Work</a>
+    <a href="#footer">Contact</a>
+    <a href="https://calendly.com/estebanmtzsevilla/30min" target="_blank" class="nav-cta">Book a meeting</a>
+  </div>
+</nav>
+
+<div class="blobs">
+  <div class="blob"></div>
+  <div class="blob"></div>
+  <div class="blob"></div>
+</div>
+
+<header class="hero">
+  <h1>Esteban Martínez</h1>
+  <div class="hero-glitch-line">
+    <span>I turn design into</span>
+    <div class="typewriter-wrapper">
+      <span class="typewriter-text" id="typewriter-text" data-text="organizational capability">organizational capability</span>
+    </div>
+  </div>
+</header>
+
+<section class="about-wrap">
+  <article class="about-card" id="about-card">
+    <h2>about me.</h2>
+    <div class="about-content">
+      <div class="about-video">
+        <video autoplay muted loop playsinline>
+          <source src="about-video.mp4" type="video/mp4" />
+          <img src="about-video-fallback.jpg" alt="About me preview" />
+        </video>
+      </div>
+      <div class="divider"></div>
+      <div class="about-text" id="about-text">
+        <!-- sentences injected by JS -->
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="timeline-wrapper" id="timeline-wrapper">
+  <div class="timeline-sticky">
+    
+    <div class="fade-layer" id="fade-layer"></div>
+    <div class="about-title" id="about-title">my journey.</div>
+
+    <div class="numbers-text" id="numbers-text">
+      <h2>my journey in numbers</h2>
+      <div class="numbers-grid">
+        <div class="number-item">
+          <div class="number-value">10+</div>
+          <div class="number-description">years designing digital products and experiences that connect business, technology, and people.</div>
+        </div>
+        <div class="number-item">
+          <div class="number-value">50+</div>
+          <div class="number-description">projects led end-to-end, impacting ecosystems with over 10 million users.</div>
+        </div>
+        <div class="number-item">
+          <div class="number-value">5+</div>
+          <div class="number-description">multidisciplinary teams consolidated under ResearchOps and DesignOps frameworks.</div>
+        </div>
+        <div class="number-item">
+          <div class="number-value">3</div>
+          <div class="number-description">design governance models implemented to ensure quality, coherence, and velocity.</div>
+        </div>
+        <div class="number-item">
+          <div class="number-value">100+</div>
+          <div class="number-description">mentoring sessions and workshops that fostered a culture of cross-functional collaboration.</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="timeline-track" id="timeline-track">
+      <div class="timeline-line"></div>
+
+      <div class="milestone" data-index="0">
+        <div class="milestone-content">
+          <div class="milestone-image">[Image placeholder]</div>
+        </div>
+        <div class="milestone-content">
+          <div class="milestone-year-wrapper">
+            <div class="milestone-year">2013–2017</div>
+          </div>
+          <h3 class="milestone-title">The self-taught years</h3>
+          <p class="milestone-text">From customizing phone themes at 13 to my first e-commerce project, I learned design through doing. Early freelance work taught me hard truths: working alone won't take you far, designing without context is a gamble, and having the right answer means nothing if you can't bring people with you.</p>
+        </div>
+      </div>
+
+      <div class="milestone" data-index="1">
+        <div class="milestone-content">
+          <div class="milestone-year-wrapper">
+            <div class="milestone-year">2019</div>
+          </div>
+          <h3 class="milestone-title">Designing for systems, not screens</h3>
+          <p class="milestone-text">At SiCredit, I designed a digital onboarding experience that replaced outdated face-to-face processes. That's when I realized design isn't just visual—it's operational, human, and deeply systemic.</p>
+        </div>
+        <div class="milestone-content">
+          <div class="milestone-image">[Image placeholder]</div>
+        </div>
+      </div>
+
+      <div class="milestone" data-index="2">
+        <div class="milestone-content">
+          <div class="milestone-image">[Image placeholder]</div>
+        </div>
+        <div class="milestone-content">
+          <div class="milestone-year-wrapper">
+            <div class="milestone-year">2020–2021</div>
+          </div>
+          <h3 class="milestone-title">From doing to enabling</h3>
+          <p class="milestone-text">I was already guiding others, facilitating workshops, aligning decisions. When I stepped into a complex organization, I realized design wasn't about deliverables anymore—it was about establishing practice, building bridges between silos, and proving that design could scale into organizational capability.</p>
+        </div>
+      </div>
+
+      <div class="milestone" data-index="3">
+        <div class="milestone-content">
+          <div class="milestone-year-wrapper">
+            <div class="milestone-year">2022</div>
+          </div>
+          <h3 class="milestone-title">Building organizational capability</h3>
+          <p class="milestone-text">As UX & Innovation Manager, we weren't just delivering design—we were building systems so everyone could design better. Together, we launched our first design system, established research operations, and created strategic rituals that brought teams together.</p>
+        </div>
+        <div class="milestone-content">
+          <div class="milestone-image">[Image placeholder]</div>
+        </div>
+      </div>
+
+      <div class="milestone" data-index="4">
+        <div class="milestone-content">
+          <div class="milestone-image">[Image placeholder]</div>
+        </div>
+        <div class="milestone-content">
+          <div class="milestone-year-wrapper">
+            <div class="milestone-year">2023–2024</div>
+          </div>
+          <h3 class="milestone-title">Design as transformation</h3>
+          <p class="milestone-text">Design became more than a service—it became a true partner in product, marketing, and CX. My role evolved: designing the system, not just the product. Creating space for others to lead, grow, and build with purpose. Leadership isn't control—it's clarity, trust, and empowerment.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="work-section" id="work-section">
+  <div class="work-marquee-wrapper">
+    <div class="work-background">
+      <div class="work-line line1">
+        <span>work work work work work work</span>
+        <span>work work work work work work</span>
+      </div>
+      <div class="work-line line2">
+        <span>work work work work work work</span>
+        <span>work work work work work work</span>
+      </div>
+      <div class="work-line line3">
+        <span>work work work work work work</span>
+        <span>work work work work work work</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="cards-container">
+    <div class="work-card c1">
+      <div class="card-gradient-bg">
+        <div class="gradient-blob"></div>
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">Scaling design</h3>
+        <p class="card-description">Empowering a data driven design team to drive digital transformation across web, app, and fintech products.</p>
+        <div class="card-tags">
+          <span class="card-tag">Design leadership</span>
+          <span class="card-tag">Strategy</span>
+          <span class="card-tag">Design Ops</span>
+          <span class="card-tag">R&D</span>
+          <span class="card-tag">Research Ops</span>
+        </div>
+      </div>
+      <div class="card-cta-wrapper">
+        <a href="#" class="cta-pill">Read about it</a>
+      </div>
+    </div>
+
+    <div class="work-card c2">
+      <div class="card-gradient-bg">
+        <div class="gradient-blob"></div>
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">Centeo</h3>
+        <p class="card-description">Translating vision into approachable digital experiences for a fintech platform for SME's in México.</p>
+        <div class="card-tags">
+          <span class="card-tag">Product Design</span>
+          <span class="card-tag">UI Design</span>
+          <span class="card-tag">Content Strategy</span>
+          <span class="card-tag">Prototyping</span>
+        </div>
+      </div>
+      <div class="card-cta-wrapper">
+        <a href="#" class="cta-pill">Read about it</a>
+      </div>
+    </div>
+
+    <div class="work-card c3">
+      <div class="card-gradient-bg">
+        <div class="gradient-blob"></div>
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">LOK Hub</h3>
+        <p class="card-description">A smart locker ecosystem for last-mile logistics.</p>
+        <div class="card-tags">
+          <span class="card-tag">Product Design</span>
+          <span class="card-tag">Experience mapping</span>
+          <span class="card-tag">UX research</span>
+          <span class="card-tag">Service Design</span>
+          <span class="card-tag">Visual design</span>
+          <span class="card-tag">Brand identity</span>
+        </div>
+      </div>
+      <div class="card-cta-wrapper">
+        <a href="#" class="cta-pill">Read about it</a>
+      </div>
+    </div>
+
+    <div class="work-card c4">
+      <div class="card-gradient-bg">
+        <div class="gradient-blob"></div>
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">Crypto Wallet</h3>
+        <p class="card-description">Improving usability and consistency in digital finance.</p>
+        <div class="card-tags">
+          <span class="card-tag">Product Design</span>
+          <span class="card-tag">Prototyping</span>
+          <span class="card-tag">User testing</span>
+        </div>
+      </div>
+      <div class="card-cta-wrapper">
+        <a href="#" class="cta-pill">Read about it</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" id="footer">
+  <div class="footer-inner">
+    <div class="footer-title">get in touch.</div>
+    <div class="footer-card">
+      <div class="footer-left">
+        <p>I love a challenge and I love connecting with people with big dreams.<br>Let's see if we can do something together :)</p>
+        <div class="brand-socials">
+          <img src="https://estebanmartinez.site/assets/img/esteban_logo.svg" alt="Esteban Martínez logo" onerror="this.style.display='none'">
+          <div class="socials">
+            <a class="icon-btn" href="mailto:estebanmtzsevilla@gmail.com" aria-label="Email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </a>
+            <a class="icon-btn" href="https://www.linkedin.com/in/esteban-martinez-design/" target="_blank" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+            <a class="icon-btn" href="https://wa.me/525584242330" target="_blank" aria-label="WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-right">
+        <h3>wanna chat?</h3>
+        <a href="https://calendly.com/estebanmtzsevilla/30min" target="_blank" class="nav-cta">Book a meeting</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  const typewriterText = document.getElementById('typewriter-text');
+  const words = ['organizational capability', 'strategic impact', 'systemic change', 'shared purpose', 'collective growth'];
+  let currentIndex = 0;
+  let isDeleting = false;
+  let currentText = words[0];
+  let charIndex = words[0].length;
+
+  function typeWriter() {
+    const fullWord = words[currentIndex];
+    
+    if (isDeleting) {
+      currentText = fullWord.substring(0, charIndex - 1);
+      charIndex--;
+      
+      if (charIndex === 0) {
+        isDeleting = false;
+        currentIndex = (currentIndex + 1) % words.length;
+        setTimeout(typeWriter, 200);
+        typewriterText.textContent = currentText;
+        return;
+      }
+    } else {
+      currentText = fullWord.substring(0, charIndex + 1);
+      charIndex++;
+      
+      if (charIndex === fullWord.length) {
+        setTimeout(() => {
+          isDeleting = true;
+          typeWriter();
+        }, 2000);
+        typewriterText.textContent = currentText;
+        return;
+      }
+    }
+    
+    typewriterText.textContent = currentText;
+    typewriterText.setAttribute('data-text', currentText);
+    
+    const speed = isDeleting ? 80 : 120;
+    setTimeout(typeWriter, speed);
+  }
+
+  setTimeout(() => {
+    isDeleting = true;
+    typeWriter();
+  }, 2000);
+})();
+
+function wander(blob, speed=0.015, scaleFactor=0.1, freq=0.002) {
+  let target = { x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight };
+  let pos = { x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight };
+  let time = 0;
+  
+  function move() {
+    time += 0.5;
+    const dx = target.x - pos.x;
+    const dy = target.y - pos.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    
+    const dynamicSpeed = speed * (1 + distance / 1000);
+    
+    pos.x += dx * dynamicSpeed;
+    pos.y += dy * dynamicSpeed;
+    
+    const breathing = 1 + 
+      scaleFactor * Math.sin(time * freq) + 
+      (scaleFactor * 0.3) * Math.sin(time * freq * 2.3) +
+      (scaleFactor * 0.2) * Math.cos(time * freq * 0.7);
+    
+    blob.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(${breathing})`;
+    
+    if(distance < 100) {
+      target = { 
+        x: Math.random()*window.innerWidth, 
+        y: Math.random()*window.innerHeight 
+      };
+    }
+    requestAnimationFrame(move);
+  }
+  move();
+}
+
+function updateBlobsVisibility() {
+  const heroSection = document.querySelector('.hero');
+  const timelineSection = document.getElementById('timeline-wrapper');
+  const workSection = document.getElementById('work-section');
+  const blobs = document.querySelectorAll('.blob');
+  
+  const heroRect = heroSection.getBoundingClientRect();
+  const timelineRect = timelineSection.getBoundingClientRect();
+  const workRect = workSection.getBoundingClientRect();
+  
+  if (heroRect.top < window.innerHeight && heroRect.bottom > 0) {
+    blobs.forEach(blob => blob.style.opacity = '0.9');
+  } else if ((timelineRect.top < window.innerHeight && timelineRect.bottom > 0) ||
+             (workRect.top < window.innerHeight && workRect.bottom > 0)) {
+    blobs.forEach(blob => blob.style.opacity = '0');
+  } else {
+    blobs.forEach(blob => blob.style.opacity = '0');
+  }
+}
+
+document.querySelectorAll(".blob").forEach((b,i)=>{
+  wander(b, 0.003 + Math.random()*0.005, 0.06 + Math.random()*0.04, 0.008 + Math.random()*0.004);
+});
+
+window.addEventListener('scroll', updateBlobsVisibility, {passive: true});
+window.addEventListener('load', updateBlobsVisibility);
+updateBlobsVisibility();
+
+// About Me text animation
+(function(){
+  const card = document.getElementById('about-card');
+  const textContainer = document.getElementById('about-text');
+  const sentences = [
+    "I see design as {purposeful creativity}. A powerful force that can refine everyday life or revolutionize entire industries.",
+    "I'm committed to learning and helping others fuel the creative fire within them.",
+    "Glad to have you here :)"
+  ];
+  const allChars = [];
+  
+  sentences.forEach(sentence => {
+    const p = document.createElement("p");
+    p.classList.add("sentence");
+    
+    const parts = sentence.split(/(\{[^}]+\})/g);
+    
+    parts.forEach(part => {
+      const isSpecial = part.startsWith('{') && part.endsWith('}');
+      const text = isSpecial ? part.slice(1, -1) : part;
+      
+      text.split(" ").forEach(word => {
+        if (!word) return;
+        const wordSpan = document.createElement("span");
+        wordSpan.classList.add("word");
+        word.split("").forEach(ch=>{
+          const span = document.createElement("span");
+          span.textContent = ch;
+          span.classList.add("char");
+          if (isSpecial) {
+            span.classList.add("italic-bold");
+          }
+          wordSpan.appendChild(span);
+          allChars.push(span);
+        });
+        p.appendChild(wordSpan);
+      });
+    });
+    
+    textContainer.appendChild(p);
+  });
+  const total = allChars.length;
+  function clamp(v,min,max){ return v<min?min:(v>max?max:v); }
+  function easeOutCubic(x){ return 1 - Math.pow(1 - x, 3); }
+  function update(){
+    const rect = card.getBoundingClientRect();
+    const windowH = window.innerHeight;
+    const cardCenter = rect.top + rect.height/2;
+    const dist = (cardCenter - windowH/2) / (windowH/2);
+    let t = clamp(1 - Math.abs(dist), 0, 1);
+    let scale = 0.8 + t*0.2;
+    card.style.transform = "translateY(-50%) scale(" + scale + ")";
+    if(t < 0.95){
+      allChars.forEach(el => el.style.opacity = 0.4);
+      return;
+    }
+    const progress = (t - 0.95) / 0.05;
+    const eased = easeOutCubic(clamp(progress,0,1));
+    const visibleCount = Math.floor(total * eased);
+    allChars.forEach((el,i)=>{
+      el.style.opacity = (i < visibleCount) ? 1 : 0.4;
+    });
+  }
+  update();
+  window.addEventListener('scroll', ()=> requestAnimationFrame(update), {passive:true});
+  window.addEventListener('resize', update);
+})();
+
+(function() {
+  const wrapper = document.getElementById('timeline-wrapper');
+  const fadeLayer = document.getElementById('fade-layer');
+  const aboutTitle = document.getElementById('about-title');
+  const numbersText = document.getElementById('numbers-text');
+  const track = document.getElementById('timeline-track');
+  const milestones = Array.from(document.querySelectorAll('.milestone'));
+
+  let totalWidth = 0;
+  milestones.forEach(m => {
+    totalWidth += m.offsetWidth;
+  });
+
+  function clamp(v, min, max) {
+    return Math.max(min, Math.min(max, v));
+  }
+
+  function lerp(a, b, t) {
+    return a + (b - a) * t;
+  }
+
+  function updateTimeline() {
+    const rect = wrapper.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const progress = clamp((vh - rect.top) / rect.height, 0, 1);
+
+    if (progress < 0.04) {
+      const fadeProgress = progress / 0.04;
+      fadeLayer.style.opacity = fadeProgress;
+      aboutTitle.style.opacity = 0;
+      track.style.opacity = 0;
+      numbersText.style.opacity = 0;
+    }
+    else if (progress < 0.08) {
+      const titleProgress = (progress - 0.04) / 0.04;
+      fadeLayer.style.opacity = 1;
+      aboutTitle.style.opacity = titleProgress;
+      track.style.opacity = 0;
+      numbersText.style.opacity = 0;
+    }
+    else if (progress < 0.15) {
+      const firstProgress = (progress - 0.08) / 0.07;
+      fadeLayer.style.opacity = 1 - firstProgress;
+      aboutTitle.style.opacity = 1 - firstProgress;
+      track.style.opacity = firstProgress;
+      track.style.transform = `translateX(${lerp(-200, 0, firstProgress)}px)`;
+      numbersText.style.opacity = 0;
+    }
+    else if (progress < 0.85) {
+      const timelineProgress = (progress - 0.15) / 0.70;
+      
+      fadeLayer.style.opacity = 0;
+      aboutTitle.style.opacity = 0;
+      track.style.opacity = 1;
+      numbersText.style.opacity = 0;
+
+      const maxTranslate = totalWidth - window.innerWidth + (window.innerWidth * 1.2);
+      const translateX = -timelineProgress * maxTranslate;
+      track.style.transform = `translateX(${translateX}px)`;
+
+      const centerScreen = window.innerWidth / 2;
+      milestones.forEach(milestone => {
+        const milestoneRect = milestone.getBoundingClientRect();
+        const milestoneCenter = milestoneRect.left + milestoneRect.width / 2;
+        const distanceFromCenter = Math.abs(milestoneCenter - centerScreen);
+        
+        if (distanceFromCenter < 300) {
+          milestone.classList.add('active');
+        } else {
+          milestone.classList.remove('active');
+        }
+      });
+    }
+    else if (progress < 0.93) {
+      const closingProgress = (progress - 0.85) / 0.08;
+      fadeLayer.style.opacity = closingProgress;
+      aboutTitle.style.opacity = 0;
+      track.style.opacity = 1 - closingProgress;
+      numbersText.style.opacity = closingProgress;
+    }
+    else if (progress < 0.97) {
+      fadeLayer.style.opacity = 1;
+      aboutTitle.style.opacity = 0;
+      track.style.opacity = 0;
+      numbersText.style.opacity = 1;
+    }
+    else {
+      const fadeOutProgress = (progress - 0.97) / 0.03;
+      fadeLayer.style.opacity = 1 - fadeOutProgress;
+      aboutTitle.style.opacity = 0;
+      track.style.opacity = 0;
+      numbersText.style.opacity = 1 - fadeOutProgress;
+    }
+  }
+
+  window.addEventListener('scroll', updateTimeline, { passive: true });
+  window.addEventListener('resize', updateTimeline);
+  window.addEventListener('load', updateTimeline);
+  updateTimeline();
+})();
+
+(function(){
+  const section = document.getElementById('work-section');
+  const workBg = section.querySelector('.work-background');
+  const cards = Array.from(section.querySelectorAll('.work-card'));
+
+  const angles = [-1.5, 1.25, -0.75, 1.0]; 
+  const yOffsets = [-50, -25, 5, 20]; 
+  const xOffsets = [0, 5, -7, 4]; 
+
+  function lerp(a,b,t){ return a + (b-a)*t; }
+  function clamp01(v){ return Math.max(0, Math.min(1, v)); }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('load', onScroll);
+
+  function onScroll(){
+    const rect = section.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const progress = clamp01( (vh - rect.top) / rect.height );
+
+    if (rect.top <= vh && rect.bottom >= 0) {
+      workBg.style.opacity = '0.05';
+    } else {
+      workBg.style.opacity = '0';
+    }
+
+    cards.forEach((card, i) => {
+      let start, end;
+      
+      if (i === 0) {
+        start = 0;
+        end = 0.20;
+      } else if (i === 1) {
+        start = 0.50;
+        end = 0.65;
+      } else if (i === 2) {
+        start = 0.77;
+        end = 0.88;
+      } else {
+        start = 0.93;
+        end = 1.0;
+      }
+      
+      const local = clamp01( (progress - start) / (end - start) );
+
+      const startY = vh + (i * 150);
+      const ty = lerp(startY, yOffsets[i], local);
+      const tx = lerp(0, xOffsets[i], local);
+      const rot= lerp(0, angles[i], local);
+
+      card.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg)`;
+    });
+  }
+  
+  onScroll();
+})();
+</script>
+
+</body>
+</html>

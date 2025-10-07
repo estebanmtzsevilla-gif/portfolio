@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Website Revamp - Esteban Martínez</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;700&amp;family=DM+Mono:wght@400;500&amp;family=Lora:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      margin: 0;
+      background: #FFFFFF;
+      color: #1D1D1D;
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(249, 249, 249, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(29, 29, 29, 0.1);
+    }
+
+    .nav-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+  background: none !important;
+  border-radius: 0;
+}
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1D1D1D;
+      font-size: 16px;
+      font-weight: 400;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.6;
+    }
+
+    .nav-cta {
+      background: #B5FFE0;
+      color: #1F1F1F;
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-family: "DM Mono", monospace;
+      font-size: 16px;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background: #1D1D1D;
+      color: #fff;
+    }
+
+    /* Main Content */
+    main {
+      margin-top: 100px;
+      padding: 0 40px 80px;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Back Button */
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: black;
+      color: white;
+      width: 56px;
+      height: 56px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 24px;
+      font-family: "DM Mono", monospace;
+      font-weight: 500;
+      margin-bottom: 24px;
+      transition: transform 0.2s ease;
+    }
+
+    .back-button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Hero Card */
+    .hero-wrapper {
+  width: 100%;
+  padding: 40px 56px;
+  background: #E8FF5D;
+  border-radius: 64px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 120px;
+  min-height: 580px;
+}
+
+    .hero-content {
+      width: 100%;
+      max-width: 1154px;
+      background: white;
+      border-radius: 32px;
+      border: 1px solid #1F1F1F;
+      padding: 40px;
+    }
+
+    .hero-title {
+      color: #1F1F1F;
+      font-size: 80px;
+      font-weight: 500;
+      line-height: 64px;
+      margin-bottom: 24px;
+    }
+
+    .hero-meta {
+      color: #1F1F1F;
+      font-size: 16px;
+      line-height: 19.2px;
+      margin-bottom: 56px;
+    }
+
+    .hero-meta .year {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .hero-meta .info {
+      font-weight: 200;
+    }
+
+    .hero-description {
+      color: #1F1F1F;
+      font-size: 16px;
+      font-family: "Lora", serif;
+      line-height: 1.6;
+      margin-bottom: 56px;
+    }
+
+    .hero-description strong {
+      font-weight: 700;
+    }
+
+    .hero-description .semibold {
+      font-weight: 600;
+    }
+
+    /* Sub-projects Section */
+    .subprojects-title {
+      color: #1F1F1F;
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .subprojects-grid {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .subproject-button {
+      padding: 16px;
+      background: white;
+      border-radius: 20px;
+      border: 1px solid #1F1F1F;
+      color: #1F1F1F;
+      font-size: 16px;
+      font-family: "DM Sans", sans-serif;
+      font-weight: 400;
+      line-height: 28px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .subproject-button:hover {
+      background: #F5F5F5;
+      transform: translateY(-2px);
+    }
+
+    .subproject-button.active {
+      background: #1F1F1F;
+      color: white;
+      font-weight: 600;
+    }
+
+    /* Content Container */
+    .content-wrapper {
+      max-width: 1328px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 120px;
+    }
+
+    /* Outcomes Section */
+    .outcomes-section {
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    /* Blobs Background for Outcomes - UPDATED */
+    .outcomes-blobs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Show blobs when outcomes section is active */
+    .outcomes-section.active .outcomes-blobs {
+      opacity: 1;
+    }
+
+    /* Noise effect overlay - NUEVO */
+    .outcomes-blobs::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255,255,255,.05) 1px, rgba(255,255,255,.05) 2px),
+        repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(0,0,0,.05) 1px, rgba(0,0,0,.05) 2px),
+        repeating-linear-gradient(45deg, transparent, transparent 1px, rgba(255,255,255,.02) 1px, rgba(255,255,255,.02) 2px),
+        repeating-linear-gradient(-45deg, transparent, transparent 1px, rgba(0,0,0,.02) 1px, rgba(0,0,0,.02) 2px);
+      opacity: 1;
+      pointer-events: none;
+      z-index: 10;
+    }
+    
+    .outcomes-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px) saturate(1.8);
+      opacity: 0.7;
+      width: 900px;
+      height: 900px;
+      background: conic-gradient(from 180deg, #4FACFE, #00F2FE, #43E97B, #38F9D7, #4FACFE);
+      mix-blend-mode: screen;
+      transform: translate(0, 0) scale(1);
+      will-change: transform;
+    }
+    
+    .outcomes-blob:nth-child(2) {
+      width: 1000px;
+      height: 1000px;
+      background: conic-gradient(from 0deg, #00F2FE, #4FACFE, #38F9D7, #43E97B, #00F2FE);
+    }
+
+    .outcomes-card {
+      width: 100%;
+      padding: 40px;
+      background: #1F1F1F;
+      border-radius: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .outcomes-title {
+      color: white;
+      font-size: 80px;
+      font-weight: 500;
+      line-height: 56px;
+    }
+
+    .outcomes-title .italic {
+      font-size: 64px;
+      font-style: italic;
+      font-weight: 100;
+    }
+
+    .outcomes-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .outcome-item {
+      flex: 1;
+      color: white;
+      font-family: "Lora", serif;
+    }
+
+    .outcome-item .large {
+      font-size: 32px;
+      font-weight: 400;
+    }
+
+    .outcome-item .small {
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    .outcome-divider {
+      width: 1px;
+      height: 80px;
+      background: white;
+    }
+
+    /* Scroll Sections with Sticky Effect */
+    .scroll-section {
+      position: relative;
+      height: 250vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sticky-content {
+      position: sticky;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      max-width: 1328px;
+      margin: 0 auto;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .scroll-section.active .sticky-content {
+      opacity: 1;
+    }
+
+    /* Context Section */
+    .context-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .context-text {
+      flex: 0 0 541px;
+      max-width: 541px;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .section-title {
+      color: #1F1F1F;
+      font-size: 80px;
+      font-weight: 500;
+    }
+
+    .section-description {
+      color: #1F1F1F;
+      font-size: 24px;
+      font-family: "Lora", serif;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .context-image {
+      flex: 0 0 527px;
+      max-width: 527px;
+      height: 303px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .context-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Challenge Section */
+    .challenge-wrapper {
+      width: 100%;
+      max-width: 1328px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      background: white;
+      border-radius: 16px;
+      border: 1px solid #1F1F1F;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .challenge-image {
+      flex: 0 0 375px;
+      max-width: 375px;
+      height: 284px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .challenge-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .challenge-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 750px;
+    }
+
+    .challenge-question {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .challenge-divider {
+      width: 2px;
+      min-height: 164px;
+      background: #1F1F1F;
+      flex-shrink: 0;
+    }
+
+    .challenge-text {
+      max-width: 630px;
+      color: #1F1F1F;
+      font-size: 32px;
+      font-family: "Lora", serif;
+      font-weight: 400;
+    }
+
+    /* Solution Section - Special scroll behavior */
+    .solution-section {
+      height: auto !important;
+      min-height: 100vh;
+      padding: 100px 0;
+    }
+
+    .solution-section .sticky-content {
+      position: relative;
+      top: auto;
+      transform: none;
+      opacity: 1 !important;
+      padding: 0 40px;
+    }
+
+    .solution-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 80px;
+      padding: 0;
+      position: relative;
+    }
+
+    .solution-text {
+      flex: 0 0 541px;
+      max-width: 541px;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .solution-title-sticky {
+      position: sticky;
+      top: 80px;
+      z-index: 10;
+      background: white;
+      padding-top: 60px;
+      padding-bottom: 30px;
+      margin-top: -60px;
+      margin-bottom: 16px;
+      background: white;
+    }
+    
+    .solution-title-sticky::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -24px;
+      right: -24px;
+      height: 100px;
+      background: white;
+      z-index: -1;
+    }
+    
+    .solution-title-sticky::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: -24px;
+      right: -24px;
+      height: 40px;
+      background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 1) 0%, 
+        rgba(255, 255, 255, 0.7) 40%,
+        rgba(255, 255, 255, 0) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .solution-description {
+      color: #1F1F1F;
+      font-size: 24px;
+      font-family: "Lora", serif;
+      line-height: 36px;
+      position: relative;
+    }
+
+    .solution-description .semibold {
+      font-weight: 600;
+    }
+
+    .solution-description .italic {
+      font-style: italic;
+    }
+
+    .solution-image-wrapper {
+      flex: 0 0 722px;
+      max-width: 722px;
+      position: sticky;
+      top: 120px;
+      align-self: flex-start;
+      margin-right: 0;
+    }
+
+    .solution-image {
+      width: 100%;
+      height: 415px;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .solution-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Outputs Section */
+    .outputs-section {
+      padding: 80px 0;
+    }
+
+    .outputs-title {
+      color: #1F1F1F;
+      font-size: 80px;
+      font-weight: 500;
+      margin-bottom: 40px;
+    }
+
+    .outputs-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+      width: 100%;
+    }
+
+    .output-card {
+      padding: 40px;
+      background: #EDEDED;
+      border-radius: 32px;
+      border: 1px solid #1F1F1F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 16px;
+      overflow: hidden;
+    }
+
+    .output-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    /* Bento Grid Layout */
+    .output-card:nth-child(1) {
+      grid-column: span 5;
+      grid-row: span 2;
+      min-height: 400px;
+    }
+
+    .output-card:nth-child(2) {
+      grid-column: span 7;
+      grid-row: span 2;
+      min-height: 400px;
+    }
+
+    .output-card:nth-child(3) {
+      grid-column: span 4;
+      grid-row: span 1;
+      min-height: 280px;
+    }
+
+    .output-card:nth-child(4) {
+      grid-column: span 8;
+      grid-row: span 1;
+      min-height: 280px;
+    }
+
+    .output-card:nth-child(5) {
+      grid-column: span 12;
+      grid-row: span 1;
+      min-height: 320px;
+    }
+
+    /* Footer */
+    footer {
+      background: #F9F9F9;
+      padding: 40px;
+      margin: 80px 40px 40px;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-card {
+      background: white;
+      border-radius: 16px;
+      border: 1px solid #1F1F1F;
+      padding: 40px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-colors {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .color-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid black;
+    }
+
+    .color-square {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      border: 2px solid black;
+    }
+
+    .color-yellow { background: #E8FF5D; }
+    .color-purple { background: #8657E2; }
+    .color-mint { background: #B5FFE0; }
+
+    .footer-logo {
+      width: 74px;
+      height: 25px;
+      background: black;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 0;
+    }
+
+    .social-btn {
+      width: 48px;
+      height: 48px;
+      background: black;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease;
+    }
+
+    .social-btn:hover {
+      background: #B5FFE0;
+    }
+
+    .social-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: white;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.2s ease;
+    }
+
+    .social-btn:hover svg {
+      stroke: black;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-text {
+      color: #1D1D1D;
+      font-size: 40px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .footer-cta {
+      background: #B5FFE0;
+      color: #1F1F1F;
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-family: "DM Mono", monospace;
+      font-size: 24px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .footer-cta:hover {
+      background: black;
+      color: white;
+    }
+
+    .footer-cta-arrow {
+      width: 16px;
+      height: 16px;
+      border: 2.4px solid currentColor;
+      border-left: none;
+      border-bottom: none;
+      transform: rotate(45deg);
+    }
+
+    /* Responsive */
+    @media (max-width: 1400px) {
+      .solution-image-wrapper {
+        flex: 0 0 calc(50% - 40px);
+        max-width: 600px;
+      }
+
+      .solution-text {
+        flex: 0 0 calc(50% - 40px);
+        max-width: 500px;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .context-text,
+      .solution-text {
+        width: 45%;
+      }
+
+      .context-image {
+        width: 45%;
+        height: 280px;
+      }
+
+      .solution-image-wrapper {
+        flex: 0 0 45%;
+        max-width: 500px;
+      }
+
+      .solution-image {
+        height: 380px;
+      }
+
+      .challenge-text {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .outcomes-blob {
+        width: 600px;
+        height: 600px;
+        filter: blur(50px) saturate(1.8);
+      }
+      
+      .outcomes-blob:nth-child(2) {
+        width: 700px;
+        height: 700px;
+      }
+
+      nav {
+        padding: 20px 32px;
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      main {
+        padding: 0 32px 80px;
+      }
+
+      .hero-wrapper {
+  width: 100%;
+  padding: 40px 56px;
+  background: #E8FF5D;
+  border-radius: 64px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 120px;
+  min-height: 580px;
+}
+
+      .hero-title {
+        font-size: 56px;
+        line-height: 1.2;
+      }
+
+      .hero-content {
+        padding: 32px;
+      }
+
+      footer {
+        padding: 40px 32px;
+        margin: 80px 32px 40px;
+      }
+
+      .footer-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      .footer-right {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .context-wrapper,
+      .solution-wrapper {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .context-text,
+      .solution-text {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .context-image,
+      .solution-image-wrapper {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .solution-title-sticky,
+      .solution-image-wrapper {
+        position: relative;
+        top: auto;
+      }
+
+      .solution-section {
+        padding: 80px 0;
+      }
+
+      .solution-section .sticky-content {
+        padding: 0 32px;
+      }
+
+      .challenge-wrapper {
+        flex-direction: column;
+      }
+
+      .challenge-image {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .challenge-text {
+        max-width: 100%;
+      }
+
+      .outputs-section {
+        flex-direction: column;
+      }
+
+      .outputs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .output-card:nth-child(1),
+      .output-card:nth-child(2),
+      .output-card:nth-child(3),
+      .output-card:nth-child(4),
+      .output-card:nth-child(5) {
+        grid-column: span 1;
+        grid-row: span 1;
+        min-height: 250px;
+      }
+
+      .content-wrapper {
+        gap: 100px;
+      }
+
+      .scroll-section {
+        height: auto;
+        min-height: auto;
+        padding: 80px 0;
+      }
+
+      .sticky-content {
+        position: relative;
+        top: auto;
+        transform: none;
+        opacity: 1 !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .outcomes-blob {
+        width: 500px;
+        height: 500px;
+        filter: blur(40px) saturate(1.6);
+      }
+      
+      .outcomes-blob:nth-child(2) {
+        width: 550px;
+        height: 550px;
+      }
+
+      .outcomes-card {
+        padding: 32px 24px;
+      }
+
+      nav {
+        padding: 16px 24px;
+      }
+
+      .nav-links {
+        gap: 20px;
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      main {
+        padding: 0 24px 60px;
+        margin-top: 80px;
+      }
+
+      .back-button {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+      }
+
+      .hero-wrapper {
+  width: 100%;
+  padding: 40px 56px;
+  background: #E8FF5D;
+  border-radius: 64px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 120px;
+  min-height: 580px;
+}
+
+      .hero-title {
+        font-size: 40px;
+        line-height: 1.2;
+      }
+
+      .hero-content {
+        padding: 24px;
+        border-radius: 24px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      footer {
+        padding: 32px 24px;
+        margin: 60px 24px 40px;
+      }
+
+      .footer-text {
+        font-size: 28px;
+      }
+
+      .footer-cta {
+        font-size: 18px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .footer-left {
+        flex-wrap: wrap;
+      }
+
+      .content-wrapper {
+        gap: 80px;
+      }
+
+      .section-title {
+        font-size: 56px;
+      }
+
+      .outcomes-title {
+        font-size: 56px;
+        line-height: 48px;
+      }
+
+      .outcomes-title .italic {
+        font-size: 48px;
+      }
+
+      .outcomes-grid {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .outcome-divider {
+        width: 80px;
+        height: 1px;
+      }
+
+      .challenge-text {
+        font-size: 24px;
+      }
+
+      .challenge-divider {
+        min-height: 120px;
+      }
+
+      .section-description,
+      .solution-description {
+        font-size: 20px;
+        line-height: 32px;
+      }
+
+      .context-image,
+      .solution-image {
+        height: 250px;
+      }
+
+      .challenge-image {
+        height: 240px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .outcomes-blob {
+        width: 400px;
+        height: 400px;
+        filter: blur(35px) saturate(1.4);
+        opacity: 0.6;
+      }
+      
+      .outcomes-blob:nth-child(2) {
+        width: 450px;
+        height: 450px;
+      }
+
+      .outcomes-card {
+        padding: 24px 16px;
+        border-radius: 32px;
+      }
+
+      .outcomes-title {
+        font-size: 40px;
+        line-height: 36px;
+      }
+
+      .outcomes-title .italic {
+        font-size: 36px;
+      }
+
+      .outcome-item .large {
+        font-size: 24px;
+      }
+
+      .outcome-item .small {
+        font-size: 18px;
+      }
+
+      nav {
+        padding: 12px 16px;
+      }
+
+      .nav-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+  background: none !important;
+  border-radius: 0;
+}
+
+      .nav-cta {
+        padding: 6px 12px;
+        font-size: 14px;
+      }
+
+      main {
+        padding: 0 16px 40px;
+      }
+
+      .back-button {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+        margin-bottom: 16px;
+      }
+
+      .hero-wrapper {
+  width: 100%;
+  padding: 40px 56px;
+  background: #E8FF5D;
+  border-radius: 64px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 120px;
+  min-height: 580px;
+}
+
+      .hero-title {
+        font-size: 32px;
+        line-height: 1.1;
+      }
+
+      .hero-content {
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      .hero-meta {
+        font-size: 14px;
+        margin-bottom: 32px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+        margin-bottom: 32px;
+      }
+
+      .subprojects-title {
+        font-size: 14px;
+      }
+
+      footer {
+        padding: 24px 16px;
+        margin: 40px 16px 20px;
+      }
+
+      .footer-card {
+        padding: 24px 16px;
+      }
+
+      .footer-text {
+        font-size: 24px;
+      }
+
+      .footer-cta {
+        font-size: 16px;
+      }
+
+      .subprojects-grid {
+        flex-direction: column;
+      }
+
+      .subproject-button {
+        width: 100%;
+      }
+
+      .content-wrapper {
+        gap: 60px;
+      }
+
+      .section-title {
+        font-size: 40px;
+        line-height: 1.1;
+      }
+
+      .section-description,
+      .solution-description {
+        font-size: 18px;
+        line-height: 28px;
+      }
+
+      .challenge-text {
+        font-size: 20px;
+        line-height: 30px;
+      }
+
+      .challenge-divider {
+        min-height: 100px;
+      }
+
+      .context-image,
+      .solution-image {
+        height: 200px;
+      }
+
+      .challenge-image {
+        height: 180px;
+      }
+
+      .challenge-wrapper {
+        padding: 32px 16px;
+      }
+
+      .outputs-title {
+        font-size: 48px;
+        margin-bottom: 32px;
+      }
+
+      .output-card {
+        padding: 32px 20px;
+        border-radius: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Navbar -->
+<!-- NAVBAR COMPONENT -->
+<nav>
+  <a href="index.html#hero" class="nav-logo-link" aria-label="Go to home">
+    <img 
+      src="https://estebanmartinez.site/assets/img/esteban_logo.svg" 
+      alt="Esteban Martínez logo" 
+      class="nav-logo" 
+      onerror="this.style.display='none'"
+    />
+  </a>
+
+  <div class="nav-links">
+    <a href="index.html#about-card">About</a>
+    <a href="index.html#work-section">Work</a>
+    <a href="index.html#footer">Contact</a>
+    <a href="https://calendly.com/estebanmtzsevilla/30min" target="_blank" class="nav-cta">Book a meeting</a>
+  </div>
+</nav>
+<!-- Main Content -->
+<main>
+<a class="back-button" href="scaling-design.html">&lt;</a>
+<!-- Hero Section -->
+<div class="hero-wrapper">
+<div class="hero-content">
+<h1 class="hero-title">Centeo</h1>
+<p class="hero-meta">
+<span class="year">2020.</span>
+<span class="info"> Fintech, UI design</span>
+</p>
+<div class="hero-description"><p>As part of Centeo’s product team, I supported the translation of their defined strategy into polished, high-fidelity interfaces. My role focused on shaping layouts, components, visual consistency and enhanced usability to ensure the product vision was accurately reflected in the user experience.</p></div>
+<!-- Sub-projects -->
+
+</div>
+</div>
+<!-- Content Sections -->
+<div class="content-wrapper">
+<!-- Outcomes Section with Scroll Effect -->
+<section class="scroll-section outcomes-section" id="outcomes">
+<div class="outcomes-blobs">
+<div class="outcomes-blob"></div>
+<div class="outcomes-blob"></div>
+</div>
+<div class="sticky-content">
+<div class="outcomes-card">
+<h2 class="outcomes-title">Outcomes</h2>
+<div class="outcomes-grid"><div class="outcome-item"><span class="small">Improved</span><span class="large">trust and accessibility</span><span class="small"> aligning Centeo’s positioning with the everyday needs of Mexican business owners</span></div><div class="outcome-divider"></div><div class="outcome-item"><span class="large">Streamlined onboarding flow</span><span class="small"> improved clarity and reduced drop-offs</span></div><div class="outcome-divider"></div><div class="outcome-item"><span class="large">Clearer product communication for SMEs</span><span class="small"> reducing barriers to understanding and adoption</span></div></div>
+</div>
+</div>
+</section>
+<!-- Context Section with Scroll Effect -->
+<section class="scroll-section context-section" id="context">
+<div class="sticky-content">
+<div class="context-wrapper">
+<div class="context-text">
+<h2 class="section-title">Context</h2>
+<p class="section-description">Centeo is a fintech company providing fast, flexible financing for SMEs in Mexico. Backed by global investors and advanced analytics capabilities, their mission was clear: democratize access to world-class financial services and drive business growth. <br/><br/>However, their initial brand expression <span class="semibold">leaned heavily on financial jargon and global positioning</span>, which risked alienating local SMEs that needed clarity and trust above all.</p>
+</div>
+<div class="context-image"><img src="https://placehold.co/527x303"/></div>
+</div>
+</div>
+</section>
+<!-- Challenge Section with Scroll Effect -->
+<section class="scroll-section challenge-section" id="challenge">
+<div class="sticky-content">
+<div class="challenge-wrapper">
+<div class="challenge-image"><img src="https://placehold.co/293x293"/></div>
+<div class="challenge-content">
+<h2 class="section-title">Challenge</h2>
+<div class="challenge-question">
+<div class="challenge-divider"></div>
+<p class="challenge-text">How might we translate Centeo’s sophisticated vision into a digital experience and communication style that was approachable, culturally relevant, and easy to understand for Mexican business owners—without losing credibility with partners and investors?</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Solution Section with Scroll Effect -->
+<section class="scroll-section solution-section" id="solution">
+<div class="sticky-content">
+<div class="solution-wrapper">
+<div class="solution-text">
+<div class="solution-title-sticky">
+<h2 class="section-title">Solution</h2>
+</div>
+<div class="solution-description">
+    My role focused on UI design execution, ensuring that the company’s strategic intent was reflected
+    in clear, consistent, and user-friendly interfaces:<br/><br/>
+<span class="semibold">Simplified Communication</span><br/>
+    Reframed complex financial language into straightforward messages, with layouts that highlighted
+    benefits over technical detail.<br/><br/>
+<span class="semibold">Interface Design</span><br/>
+    Translated wireframes and flows into polished high-fidelity UI screens, applying visual hierarchy
+    to guide users effortlessly through applications and service details.<br/><br/>
+<span class="semibold">Consistency &amp; Trust</span><br/>
+    Extended and applied Centeo’s visual identity into a cohesive UI library, ensuring every interaction
+    felt modern, professional, and trustworthy.<br/><br/>
+<span class="semibold">Local Relevance</span><br/>
+    Introduced UI elements and visual cues tailored to resonate with a Mexican SME audience, balancing
+    accessibility with fintech credibility.
+    </div>
+</div>
+<div class="solution-image-wrapper">
+<div class="solution-image"><img src="Centeo.jpeg"/></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Outputs Section -->
+<section class="outputs-section">
+<h2 class="outputs-title">Outputs</h2>
+<div class="outputs-grid"><div class="output-card"><img src="https://placehold.co/1200x800"/></div><div class="output-card"><img src="https://placehold.co/1400x900"/></div><div class="output-card"><img src="https://placehold.co/800x600"/></div><div class="output-card"><img src="https://placehold.co/1200x500"/></div><div class="output-card"><img src="https://placehold.co/1400x600"/></div></div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer>
+<div class="footer-card">
+<div class="footer-left">
+<div class="footer-colors">
+<div class="color-dot color-yellow"></div>
+<div class="color-square color-purple"></div>
+<div class="color-square color-mint"></div>
+</div>
+<div class="footer-logo"></div>
+<div class="footer-socials">
+<a class="social-btn" href="mailto:estebanmtzsevilla@gmail.com">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+<polyline points="22,6 12,13 2,6"></polyline>
+</svg>
+</a>
+<a class="social-btn" href="https://www.linkedin.com/in/esteban-martinez-design/" target="_blank">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+<rect height="12" width="4" x="2" y="9"></rect>
+<circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+<a class="social-btn" href="https://wa.me/525584242330" target="_blank">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+</svg>
+</a>
+</div>
+</div>
+<div class="footer-right">
+<div class="footer-text">wanna chat?</div>
+<a class="footer-cta" href="https://calendly.com/estebanmtzsevilla/30min" target="_blank">
+          Book a meeting
+          <div class="footer-cta-arrow"></div>
+</a>
+</div>
+</div>
+</footer>
+<!-- Scroll Observer Script -->
+<script>
+    const scrollSections = document.querySelectorAll('.scroll-section');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          } else {
+            entry.target.classList.remove('active');
+          }
+        });
+      },
+      { 
+        threshold: 0.3,
+        rootMargin: '0px'
+      }
+    );
+
+    scrollSections.forEach((section) => observer.observe(section));
+
+    // Animate blobs in Outcomes section - UPDATED
+    function wanderBlob(blob, speed=0.015, scaleFactor=0.1, freq=0.002) {
+      let target = { 
+        x: Math.random() * window.innerWidth, 
+        y: Math.random() * window.innerHeight 
+      };
+      let pos = { 
+        x: Math.random() * window.innerWidth, 
+        y: Math.random() * window.innerHeight 
+      };
+      let time = 0;
+      
+      function move() {
+        time += 1;
+        const dx = target.x - pos.x;
+        const dy = target.y - pos.y;
+        pos.x += dx * speed;
+        pos.y += dy * speed;
+        const breathing = 1 + scaleFactor * Math.sin(time * freq);
+        blob.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(${breathing})`;
+        
+        if(Math.abs(dx) < 20 && Math.abs(dy) < 20) {
+          target = { 
+            x: Math.random() * window.innerWidth, 
+            y: Math.random() * window.innerHeight 
+          };
+        }
+        requestAnimationFrame(move);
+      }
+      move();
+    }
+
+    document.querySelectorAll(".outcomes-blob").forEach((blob, i) => {
+      wanderBlob(
+        blob, 
+        0.010 + Math.random() * 0.008,
+        0.06 + Math.random() * 0.03,
+        0.005 + Math.random() * 0.003
+      );
+    });
+  </script>
+</body>
+</html>

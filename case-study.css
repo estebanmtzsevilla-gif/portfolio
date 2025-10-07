@@ -1,0 +1,847 @@
+/* ============================================
+   CASE-STUDY.CSS - Estilos para casos de estudio
+   ============================================ */
+
+/* =====================================
+   1. HERO SECTION (Amarillo)
+   ===================================== */
+.hero-wrapper {
+  width: 100%;
+  padding: 40px 56px;
+  background: var(--color-yellow);
+  border-radius: var(--radius-2xl);
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 120px;
+  min-height: 580px;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 1154px;
+  background: white;
+  border-radius: 32px;
+  border: 1px solid var(--color-border);
+  padding: 40px;
+}
+
+.hero-title {
+  color: var(--color-border);
+  font-size: 80px;
+  font-weight: 500;
+  line-height: 64px;
+  margin-bottom: 24px;
+}
+
+.hero-meta {
+  color: var(--color-border);
+  font-size: 16px;
+  line-height: 19.2px;
+  margin-bottom: 56px;
+}
+
+.hero-meta .year {
+  font-style: italic;
+  font-weight: 300;
+}
+
+.hero-meta .info {
+  font-weight: 200;
+}
+
+.hero-description {
+  color: var(--color-border);
+  font-size: 16px;
+  font-family: var(--font-serif);
+  line-height: 1.6;
+  margin-bottom: 56px;
+}
+
+.hero-description strong {
+  font-weight: 700;
+}
+
+.hero-description .semibold {
+  font-weight: 600;
+}
+
+/* =====================================
+   2. SUB-PROJECTS BUTTONS
+   ===================================== */
+.subprojects-title {
+  color: var(--color-border);
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.subprojects-grid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.subproject-button {
+  padding: 16px;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  color: var(--color-border);
+  font-size: 16px;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 28px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  cursor: pointer;
+}
+
+.subproject-button:hover {
+  background: #F5F5F5;
+  transform: translateY(-2px);
+}
+
+.subproject-button.active {
+  background: var(--color-border);
+  color: white;
+  font-weight: 600;
+}
+
+/* =====================================
+   3. CONTENT WRAPPER
+   ===================================== */
+.content-wrapper {
+  max-width: 1328px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+}
+
+/* =====================================
+   4. OUTCOMES SECTION CON BLOBS
+   ===================================== */
+.outcomes-section {
+  margin-bottom: 0;
+  position: relative;
+}
+
+/* Blobs animados de fondo */
+.outcomes-blobs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.outcomes-section.active .outcomes-blobs {
+  opacity: 1;
+}
+
+/* Efecto de ruido sobre los blobs */
+.outcomes-blobs::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255,255,255,.05) 1px, rgba(255,255,255,.05) 2px),
+    repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(0,0,0,.05) 1px, rgba(0,0,0,.05) 2px),
+    repeating-linear-gradient(45deg, transparent, transparent 1px, rgba(255,255,255,.02) 1px, rgba(255,255,255,.02) 2px),
+    repeating-linear-gradient(-45deg, transparent, transparent 1px, rgba(0,0,0,.02) 1px, rgba(0,0,0,.02) 2px);
+  opacity: 1;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.outcomes-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px) saturate(1.8);
+  opacity: 0.7;
+  width: 900px;
+  height: 900px;
+  background: conic-gradient(from 180deg, #4FACFE, #00F2FE, #43E97B, #38F9D7, #4FACFE);
+  mix-blend-mode: screen;
+  transform: translate(0, 0) scale(1);
+  will-change: transform;
+}
+
+.outcomes-blob:nth-child(2) {
+  width: 1000px;
+  height: 1000px;
+  background: conic-gradient(from 0deg, #00F2FE, #4FACFE, #38F9D7, #43E97B, #00F2FE);
+}
+
+/* Card de outcomes */
+.outcomes-card {
+  width: 100%;
+  padding: 40px;
+  background: var(--color-border);
+  border-radius: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.outcomes-title {
+  color: white;
+  font-size: 80px;
+  font-weight: 500;
+  line-height: 56px;
+}
+
+.outcomes-title .italic {
+  font-size: 64px;
+  font-style: italic;
+  font-weight: 100;
+}
+
+.outcomes-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.outcome-item {
+  flex: 1;
+  min-width: 200px;
+  color: white;
+  font-family: var(--font-serif);
+}
+
+.outcome-item .large {
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.outcome-item .small {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.outcome-divider {
+  width: 1px;
+  height: 80px;
+  background: white;
+}
+
+.outcomes-footer {
+  color: white;
+  font-size: 20px;
+  font-family: var(--font-serif);
+  line-height: 1.6;
+  margin-top: 20px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.outcomes-footer .emphasis {
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* =====================================
+   5. SCROLL SECTIONS CON STICKY
+   ===================================== */
+.scroll-section {
+  position: relative;
+  height: 250vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sticky-content {
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  max-width: 1328px;
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.scroll-section.active .sticky-content {
+  opacity: 1;
+}
+
+/* =====================================
+   6. CONTEXT SECTION
+   ===================================== */
+.context-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 80px;
+}
+
+.context-text {
+  flex: 0 0 541px;
+  max-width: 541px;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.context-image {
+  flex: 0 0 527px;
+  max-width: 527px;
+  height: 303px;
+  background: #F5F5F5;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.context-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =====================================
+   7. CHALLENGE SECTION
+   ===================================== */
+.challenge-wrapper {
+  width: 100%;
+  max-width: 1328px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  background: white;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+}
+
+.challenge-image,
+.challenge-illustration {
+  flex: 0 0 375px;
+  max-width: 375px;
+  height: 284px;
+  background: #F5F5F5;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.challenge-image img,
+.challenge-illustration img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.challenge-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 750px;
+}
+
+.challenge-question {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.challenge-divider {
+  width: 2px;
+  min-height: 164px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
+.challenge-text {
+  max-width: 630px;
+  color: var(--color-border);
+  font-size: 32px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+/* =====================================
+   8. SOLUTION SECTION
+   ===================================== */
+.solution-section {
+  height: auto !important;
+  min-height: 100vh;
+  padding: 100px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.solution-section .sticky-content {
+  position: relative;
+  top: auto;
+  transform: none;
+  opacity: 1 !important;
+  padding: 0 40px;
+}
+
+.solution-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 80px;
+  padding: 0;
+  position: relative;
+  isolation: isolate;
+}
+
+.solution-text {
+  flex: 1;
+  max-width: 540px;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.solution-title-sticky {
+  position: sticky;
+  top: 80px;
+  z-index: 10;
+  background: white;
+  padding-top: 60px;
+  padding-bottom: 30px;
+  margin-top: -60px;
+  margin-bottom: 16px;
+}
+
+.solution-title-sticky::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: -24px;
+  right: -24px;
+  height: 100px;
+  background: white;
+  z-index: -1;
+}
+
+.solution-title-sticky::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: -24px;
+  right: -24px;
+  height: 40px;
+  background: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 1) 0%, 
+    rgba(255, 255, 255, 0.7) 40%,
+    rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.solution-description {
+  color: var(--color-text-secondary);
+  font-size: 24px;
+  font-family: var(--font-serif);
+  line-height: 1.5;
+  position: relative;
+}
+
+.solution-description .semibold {
+  font-weight: 600;
+}
+
+.solution-description strong {
+  font-weight: 700;
+}
+
+.solution-image-wrapper {
+  flex: 0 0 722px;
+  max-width: 722px;
+  position: sticky;
+  top: 120px;
+  align-self: flex-start;
+  margin-right: 0;
+}
+
+.solution-image {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.solution-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Lista de soluciones */
+.solution-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.solution-item {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(31, 31, 31, 0.1);
+}
+
+.solution-item:last-child {
+  border-bottom: none;
+}
+
+.solution-item-title {
+  color: var(--color-border);
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.solution-item-content {
+  color: var(--color-border);
+  font-size: 16px;
+  font-family: var(--font-serif);
+  line-height: 1.6;
+}
+
+.solution-item-content ul {
+  margin-top: 12px;
+  padding-left: 20px;
+}
+
+.solution-item-content li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* =====================================
+   9. OUTPUTS SECTION
+   ===================================== */
+.outputs-section {
+  padding: 80px 0;
+}
+
+.outputs-title {
+  color: var(--color-border);
+  font-size: 80px;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
+.outputs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.output-card {
+  padding: 40px;
+  background: #EDEDED;
+  border-radius: 32px;
+  border: 1px solid #C2C2C2;
+  box-shadow: 0px 3px 3px 2.25px rgba(68, 68, 68, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.output-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* =====================================
+   10. RESPONSIVE - TABLET
+   ===================================== */
+@media (max-width: 1024px) {
+  .hero-wrapper {
+    padding: 32px;
+    margin-bottom: 100px;
+  }
+
+  .hero-title {
+    font-size: 56px;
+    line-height: 1.2;
+  }
+
+  .context-wrapper,
+  .solution-wrapper,
+  .challenge-wrapper {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .context-text,
+  .solution-text,
+  .challenge-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .context-image,
+  .solution-image-wrapper {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    position: relative;
+    top: auto;
+  }
+
+  .challenge-image,
+  .challenge-illustration {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .outputs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .outcomes-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .outcome-divider {
+    width: 80px;
+    height: 1px;
+  }
+
+  .content-wrapper {
+    gap: 100px;
+  }
+
+  .scroll-section {
+    height: auto;
+    min-height: auto;
+    padding: 80px 0;
+  }
+
+  .sticky-content {
+    position: relative;
+    top: auto;
+    transform: none;
+    opacity: 1 !important;
+  }
+
+  .solution-section {
+    padding: 80px 0;
+  }
+
+  .solution-section .sticky-content {
+    padding: 0 32px;
+  }
+
+  .solution-title-sticky {
+    position: relative;
+    top: auto;
+  }
+
+  .outcomes-blob {
+    width: 600px;
+    height: 600px;
+    filter: blur(50px) saturate(1.8);
+  }
+  
+  .outcomes-blob:nth-child(2) {
+    width: 700px;
+    height: 700px;
+  }
+}
+
+/* =====================================
+   11. RESPONSIVE - MOBILE
+   ===================================== */
+@media (max-width: 768px) {
+  .hero-wrapper {
+    padding: 24px;
+    border-radius: 48px;
+    margin-bottom: 80px;
+  }
+
+  .hero-title {
+    font-size: 40px;
+    line-height: 1.2;
+  }
+
+  .hero-content {
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  .hero-description {
+    font-size: 15px;
+  }
+
+  .outcomes-card {
+    padding: 32px 24px;
+  }
+
+  .outcomes-title {
+    font-size: 56px;
+    line-height: 48px;
+  }
+
+  .outcomes-title .italic {
+    font-size: 48px;
+  }
+
+  .challenge-text {
+    font-size: 24px;
+  }
+
+  .challenge-divider {
+    min-height: 120px;
+  }
+
+  .content-wrapper {
+    gap: 80px;
+  }
+
+  .outputs-title {
+    font-size: 56px;
+  }
+
+  .outcomes-blob {
+    width: 500px;
+    height: 500px;
+    filter: blur(40px) saturate(1.6);
+  }
+  
+  .outcomes-blob:nth-child(2) {
+    width: 550px;
+    height: 550px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-wrapper {
+    padding: 16px;
+    border-radius: 32px;
+  }
+
+  .hero-title {
+    font-size: 32px;
+    line-height: 1.1;
+  }
+
+  .hero-content {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .hero-meta {
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+
+  .subprojects-title {
+    font-size: 14px;
+  }
+
+  .subprojects-grid {
+    flex-direction: column;
+  }
+
+  .subproject-button {
+    width: 100%;
+  }
+
+  .content-wrapper {
+    gap: 60px;
+  }
+
+  .outcomes-card {
+    padding: 24px 16px;
+    border-radius: 32px;
+  }
+
+  .outcomes-title {
+    font-size: 40px;
+    line-height: 36px;
+  }
+
+  .outcomes-title .italic {
+    font-size: 36px;
+  }
+
+  .outcome-item .large {
+    font-size: 24px;
+  }
+
+  .outcome-item .small {
+    font-size: 18px;
+  }
+
+  .challenge-text {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .challenge-divider {
+    min-height: 100px;
+  }
+
+  .challenge-wrapper {
+    padding: 32px 16px;
+  }
+
+  .outputs-title {
+    font-size: 48px;
+    margin-bottom: 32px;
+  }
+
+  .output-card {
+    padding: 32px 20px;
+    border-radius: 24px;
+  }
+
+  .outcomes-blob {
+    width: 400px;
+    height: 400px;
+    filter: blur(35px) saturate(1.4);
+    opacity: 0.6;
+  }
+  
+  .outcomes-blob:nth-child(2) {
+    width: 450px;
+    height: 450px;
+  }
+}
